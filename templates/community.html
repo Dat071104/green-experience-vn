@@ -2,7 +2,7 @@
 {% block title %}Hoạt Động Cộng Đồng - Green Experience{% endblock %}
 
 {% block content %}
-<section class="hero" style="min-height: 50vh; padding-top: 100px; background: url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80') center/cover no-repeat;">
+<section class="hero" style="min-height: 50vh; padding-top: 100px; background: url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=1920&q=85&fit=crop') center/cover no-repeat;">
   <div style="position: absolute; top:0; left:0; width:100%; height:100%; background: var(--gradient-card);"></div>
   <div class="container hero-content text-center" style="position: relative; z-index: 1;">
     <h1 class="hero-title text-hero reveal" style="color: white;">Hoạt động cộng đồng</h1>
@@ -10,7 +10,6 @@
   </div>
 </section>
 
-<!-- Impact Counters -->
 <section class="section" style="background: var(--green-pine); color: white;">
   <div class="container grid-4 text-center reveal-group">
     <div class="reveal">
@@ -32,30 +31,39 @@
   </div>
 </section>
 
-<!-- Activities List -->
 <section class="section">
   <div class="container">
     <div class="section-header text-center reveal">
       <h2 class="section-title text-h2">Tham gia cùng chúng tôi</h2>
       <p class="section-desc">Bạn có thể chọn các hoạt động này dưới dạng tour ngắn trong ngày hoặc kết hợp cùng chuyến đi dài ngày.</p>
     </div>
-    
+
     <div class="grid-3 reveal-group">
       {% for act in activities %}
-      <div class="card reveal" style="padding: 1.5rem;">
-        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
-          <span class="tag">{{ act.type }}</span>
-          <span class="gp-badge">+{{ act.gp_reward }} GP</span>
+      <div class="card activity-card reveal">
+        <div class="card-img-wrap">
+          <img src="{{ act.image }}"
+               alt="{{ act.title }}"
+               loading="lazy"
+               decoding="async"
+               onerror="this.onerror=null;this.src='/static/img/places/namcattien.jpg'">
         </div>
-        <h3 class="text-h3" style="color: var(--green-pine); margin-bottom: 0.5rem;">{{ act.title }}</h3>
-        
-        <ul style="list-style: none; padding: 0; margin-bottom: 1.5rem; color: var(--green-moss); font-size: 0.875rem;">
-          <li style="margin-bottom: 0.5rem;"><i data-lucide="map-pin" style="width: 14px; height: 14px; vertical-align: middle;"></i> Điểm đến: {{ act.destinationId }}</li>
-          <li style="margin-bottom: 0.5rem;"><i data-lucide="clock" style="width: 14px; height: 14px; vertical-align: middle;"></i> Thời gian: {{ act.duration }}</li>
-          <li><i data-lucide="trending-up" style="width: 14px; height: 14px; vertical-align: middle;"></i> Tác động: {{ act.impact }}</li>
-        </ul>
-        
-        <button class="btn btn-ghost" style="width: 100%; border: 1px solid var(--border-light);">Tìm hiểu thêm</button>
+        <div class="card-body">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+            <span class="tag">{{ act.type }}</span>
+            <span class="gp-badge">+{{ act.greenPoints }} GP</span>
+          </div>
+          <h3 class="text-h3" style="color: var(--green-pine); margin-bottom: 0.5rem;">{{ act.title }}</h3>
+          <p style="margin-bottom: 1rem; color: var(--green-moss);">{{ act.description }}</p>
+
+          <ul style="list-style: none; padding: 0; margin-bottom: 1.5rem; color: var(--green-moss); font-size: 0.875rem;">
+            <li style="margin-bottom: 0.5rem;"><i data-lucide="map-pin" style="width: 14px; height: 14px; vertical-align: middle;"></i> Điểm đến: {{ act.destinationId }}</li>
+            <li style="margin-bottom: 0.5rem;"><i data-lucide="clock" style="width: 14px; height: 14px; vertical-align: middle;"></i> Thời gian: {{ act.duration }}</li>
+            <li><i data-lucide="trending-up" style="width: 14px; height: 14px; vertical-align: middle;"></i> Tác động: {{ act.impact }}</li>
+          </ul>
+
+          <button class="btn btn-ghost" style="width: 100%; border: 1px solid var(--border-light);">Tìm hiểu thêm</button>
+        </div>
       </div>
       {% endfor %}
     </div>

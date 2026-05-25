@@ -43,7 +43,11 @@
       {% for hs in homestays %}
       <div class="card reveal">
         <div class="card-img-wrap">
-          <img src="{{ hs.image }}" alt="{{ hs.name }}" loading="lazy">
+          <img src="{{ hs.image }}"
+               alt="{{ hs.name }}"
+               loading="lazy"
+               decoding="async"
+               onerror="this.onerror=null;this.src='/static/img/places/namcattien.jpg'">
         </div>
         <div class="card-body">
           <h3 class="text-h3" style="margin-bottom: 0.5rem; color: var(--green-pine);">{{ hs.name }}</h3>

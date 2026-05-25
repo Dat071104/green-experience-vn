@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS users (
     password_hash TEXT NOT NULL,
     green_points  INTEGER DEFAULT 0,
     level         TEXT DEFAULT 'Eco Beginner',
+    role          TEXT DEFAULT 'user',
     is_admin      INTEGER DEFAULT 0,
     created_at    DATETIME DEFAULT CURRENT_TIMESTAMP
 );
@@ -18,6 +19,7 @@ CREATE TABLE IF NOT EXISTS bookings (
     destination_name    TEXT,
     guests              INTEGER DEFAULT 1,
     total_price         INTEGER,
+    green_points        INTEGER DEFAULT 0,
     green_points_earned INTEGER DEFAULT 0,
     co2_saved           REAL DEFAULT 0,
     transport_choice    TEXT,
@@ -27,6 +29,7 @@ CREATE TABLE IF NOT EXISTS bookings (
     customer_phone      TEXT,
     notes               TEXT,
     status              TEXT DEFAULT 'pending',
+    booking_date        DATE,
     travel_date         DATE,
     created_at          DATETIME DEFAULT CURRENT_TIMESTAMP
 );
@@ -35,6 +38,8 @@ CREATE TABLE IF NOT EXISTS green_points_log (
     id          INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id     INTEGER NOT NULL REFERENCES users(id),
     action      TEXT,
+    activity_type TEXT,
+    description TEXT,
     points      INTEGER,
     reference   TEXT,
     created_at  DATETIME DEFAULT CURRENT_TIMESTAMP

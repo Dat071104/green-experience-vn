@@ -1,44 +1,66 @@
 import sqlite3
-import os
-from datetime import datetime
+from pathlib import Path
 
-DB_PATH = os.path.join(os.path.dirname(__file__), '../instance/green_experience.db')
+from flask import current_app
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+DEFAULT_DB_PATH = BASE_DIR / "instance" / "green_experience.db"
+
 
 def get_db():
-    conn = sqlite3.connect(DB_PATH)
-    conn.row_factory = sqlite3.Row  # Trả dict-like rows
+    db_path = current_app.config.get("DATABASE", str(DEFAULT_DB_PATH))
+    Path(db_path).parent.mkdir(parents=True, exist_ok=True)
+    conn = sqlite3.connect(db_path)
+    conn.row_factory = sqlite3.Row
     return conn
+
 
 def generate_booking_code():
     import time
+
     return f"GE{str(int(time.time()))[-8:]}"
 
-def get_user_level(points: int) -> tuple[str, str]:
-    """Returns (level_name, badge_emoji)"""
+
+def get_user_level(points: int) -> dict:
     levels = [
-        (1000, 'Green Legend', '🌍'),
-        (600,  'Sustainability Champion', '🏆'),
-        (300,  'Eco Warrior', '🌳'),
-        (100,  'Green Explorer', '🌿'),
-        (0,    'Eco Beginner', '🌱'),
+        (1000, "Green Legend", "Legend"),
+        (600, "Sustainability Champion", "Champion"),
+        (300, "Eco Warrior", "Warrior"),
+        (100, "Green Explorer", "Explorer"),
+        (0, "Eco Beginner", "Beginner"),
     ]
-    for threshold, name, badge in levels:
+
+    for index, (threshold, name, badge) in enumerate(levels):
         if points >= threshold:
-            return name, badge
-    return 'Eco Beginner', '🌱'
+            next_threshold = levels[index - 1][0] if index > 0 else None
+            return {
+                "name": name,
+                "badge": badge,
+                "threshold": threshold,
+                "next_threshold": next_threshold,
+            }
+
+    return {
+        "name": "Eco Beginner",
+        "badge": "Beginner",
+        "threshold": 0,
+        "next_threshold": 100,
+    }
+
 
 def add_green_points(db, user_id: int, action: str, points: int, reference: str = None):
-    """Add points và update user level"""
     db.execute(
-        "INSERT INTO green_points_log (user_id, action, points, reference) VALUES (?,?,?,?)",
-        (user_id, action, points, reference)
+        """
+        INSERT INTO green_points_log (user_id, action, description, points, reference)
+        VALUES (?, ?, ?, ?, ?)
+        """,
+        (user_id, action, action, points, reference),
     )
     db.execute(
         "UPDATE users SET green_points = green_points + ? WHERE id = ?",
-        (points, user_id)
+        (points, user_id),
     )
-    # Update level
     user = db.execute("SELECT green_points FROM users WHERE id=?", (user_id,)).fetchone()
-    level_name, _ = get_user_level(user['green_points'])
-    db.execute("UPDATE users SET level=? WHERE id=?", (level_name, user_id))
+    level_info = get_user_level(user["green_points"])
+    db.execute("UPDATE users SET level=? WHERE id=?", (level_info["name"], user_id))
     db.commit()

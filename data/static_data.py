@@ -1,311 +1,411 @@
+FALLBACK_IMAGE = "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80&fit=crop"
+
 DESTINATIONS = [
     {
         'id': 'lo-lo-chai',
         'name': 'Lô Lô Chải, Hà Giang',
         'region': 'Miền Bắc',
-        'image': 'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&q=80',
-        'description': 'Làng văn hóa Lô Lô Chải nằm ngay dưới chân cột cờ Lũng Cú. Trải nghiệm không gian sống truyền thống với nhà trình tường bằng đất, mái ngói âm dương và những phong tục đậm đà bản sắc người Lô Lô.',
-        'highlights': ['Nhà trình tường truyền thống', 'Văn hóa người Lô Lô', 'Cột cờ Lũng Cú', 'Cà phê Cực Bắc']
+        'tagline': 'Xanh gắn với trải nghiệm văn hoá bản địa',
+        'description': 'Làng văn hóa người Lô Lô nằm dưới chân cột cờ Lũng Cú, Hà Giang. Trải nghiệm dệt thổ cẩm, nhà trình tường, ẩm thực độc đáo và cuộc sống bản làng giữa cao nguyên đá hùng vĩ.',
+        'image': '/static/img/places/lolochai.jpg',
+        'hero': '/static/img/places/lolochai.jpg',
+        'days': '4-5 ngày',
+        'priceFrom': 4_500_000,
+        'greenPoints': 160,
+        'co2Saved': 52,
+        'highlights': [
+            'Dệt thổ cẩm cùng nghệ nhân người Lô Lô',
+            'Ngủ homestay nhà sàn truyền thống 100 năm tuổi',
+            'Trekking ruộng bậc thang mùa lúa chín (tháng 9-10)',
+            'Thăm chợ phiên Đồng Văn sáng Chủ nhật',
+            'Chinh phục Cột cờ Lũng Cú điểm cực Bắc',
+        ],
+        'color': '#6b8e5f',
+        'patternColor': '#8b6f47',
+        'difficulty': 'Trung bình',
+        'bestSeason': 'Tháng 9 - 11',
+        'groupSize': '6-12 người',
     },
     {
         'id': 'mang-den',
         'name': 'Măng Đen, Kon Tum',
         'region': 'Tây Nguyên',
-        'image': 'https://images.unsplash.com/photo-1598436814911-37d363b963a7?auto=format&fit=crop&q=80',
-        'description': 'Được mệnh danh là "Đà Lạt thứ hai" với rừng thông bạt ngàn, không khí mát mẻ quanh năm. Du lịch Măng Đen gắn liền với bảo tồn thiên nhiên và hỗ trợ cộng đồng dân tộc bản địa.',
-        'highlights': ['Rừng thông nguyên sinh', 'Thác Pa Sỹ', 'Làng văn hóa Kon Pring', 'Nông trại sinh thái']
+        'tagline': 'Xanh gắn với hành trình thiện nguyện',
+        'description': 'Được mệnh danh là "Đà Lạt thứ hai" với rừng thông bạt ngàn, hồ nước trong xanh và khí hậu mát mẻ quanh năm. Kết hợp thiện nguyện giáo dục và trải nghiệm văn hóa Xê Đăng.',
+        'image': '/static/img/places/mangden.jpg',
+        'hero': '/static/img/places/mangden.jpg',
+        'days': '3-4 ngày',
+        'priceFrom': 3_800_000,
+        'greenPoints': 185,
+        'co2Saved': 38,
+        'highlights': [
+            'Dạy học tình nguyện cho trẻ em dân tộc Xê Đăng',
+            'Trồng 50 cây thông rừng/người',
+            'Khám phá thác Đăk Ke và rừng thông nguyên sinh',
+            'Homestay cùng gia đình dân tộc địa phương',
+            'Workshop văn hóa cồng chiêng Tây Nguyên',
+        ],
+        'color': '#2c5f4a',
+        'patternColor': '#d4a574',
+        'difficulty': 'Dễ',
+        'bestSeason': 'Tháng 11 - 4',
+        'groupSize': '8-15 người',
     },
     {
-        'id': 'tien-giang',
+        'id': 'tien-giang-ben-tre',
         'name': 'Tiền Giang - Bến Tre',
         'region': 'Miền Tây',
-        'image': 'https://images.unsplash.com/photo-1604928169976-5832049e6123?auto=format&fit=crop&q=80',
-        'description': 'Hành trình xanh về miền Tây sông nước. Tham gia các hoạt động du lịch có trách nhiệm, chèo xuồng ba lá dưới tán dừa nước, và trải nghiệm cuộc sống người dân đồng bằng sông Cửu Long.',
-        'highlights': ['Vườn trái cây sinh thái', 'Chèo xuồng ba lá', 'Làng nghề truyền thống', 'Đờn ca tài tử']
+        'tagline': 'Xanh gắn với bảo vệ sông nước Mekong',
+        'description': 'Hành trình xanh về miền Tây sông nước. Tham gia trồng dừa bền vững, dọn rác ven sông Mekong, học làm kẹo dừa thủ công và trải nghiệm cuộc sống vùng đồng bằng sông Cửu Long.',
+        'image': '/static/img/places/tiengiangbentre.jpg',
+        'hero': '/static/img/places/tiengiangbentre.jpg',
+        'days': '2-3 ngày',
+        'priceFrom': 2_800_000,
+        'greenPoints': 140,
+        'co2Saved': 28,
+        'highlights': [
+            'Trồng cây dừa và cây bản địa ven sông (10 cây/người)',
+            'Chiến dịch dọn rác #SạchSôngMekong',
+            'Học làm kẹo dừa và bánh tráng truyền thống',
+            'Chèo thuyền khám phá kênh rạch Bến Tre',
+            'Chợ nổi Cái Bè - mua đặc sản từ nông dân',
+        ],
+        'color': '#5a9167',
+        'patternColor': '#7ba8a8',
+        'difficulty': 'Dễ',
+        'bestSeason': 'Tháng 11 - 4',
+        'groupSize': '10-20 người',
     },
     {
         'id': 'pu-luong',
         'name': 'Pù Luông, Thanh Hóa',
         'region': 'Miền Bắc',
-        'image': 'https://images.unsplash.com/photo-1579450841285-1d033758b991?auto=format&fit=crop&q=80',
-        'description': 'Khu bảo tồn thiên nhiên Pù Luông nổi tiếng với những thửa ruộng bậc thang tuyệt đẹp, hệ sinh thái đa dạng và những bản làng người Thái, người Mường bình yên.',
-        'highlights': ['Ruộng bậc thang Bản Hiêu', 'Bản Đôn', 'Chèo bè tre', 'Trekking xuyên rừng']
+        'tagline': 'Ruộng bậc thang & bản người Thái trắng',
+        'description': 'Khu bảo tồn thiên nhiên Pù Luông với những thửa ruộng bậc thang tuyệt đẹp và hệ sinh thái rừng nguyên sinh. Trải nghiệm cuộc sống của cộng đồng dân tộc Thái Trắng và Mường bên những bản làng yên bình.',
+        'image': '/static/img/places/puluong.jpg',
+        'hero': '/static/img/places/puluong.jpg',
+        'days': '3-4 ngày',
+        'priceFrom': 3_200_000,
+        'greenPoints': 145,
+        'co2Saved': 41,
+        'highlights': [
+            'Trekking ruộng bậc thang mùa nước đổ (tháng 5-6)',
+            'Nghỉ tại nhà sàn bản Đôn, bản Hiêu',
+            'Bơi suối tự nhiên dưới tán rừng nguyên sinh',
+            'Workshop dệt lụa và làm bánh chưng đen của người Thái',
+            'Thăm thác Hiêu và rừng luồng xanh mướt',
+        ],
+        'color': '#4a7c59',
+        'patternColor': '#8b7355',
+        'difficulty': 'Trung bình',
+        'bestSeason': 'Tháng 5 - 10',
+        'groupSize': '6-12 người',
     },
     {
         'id': 'phong-nha',
         'name': 'Phong Nha, Quảng Bình',
         'region': 'Miền Trung',
-        'image': 'https://images.unsplash.com/photo-1563293816-17b5f54314c4?auto=format&fit=crop&q=80',
-        'description': 'Vương quốc hang động thế giới với Vườn quốc gia Phong Nha - Kẻ Bàng. Các hoạt động du lịch ở đây chú trọng bảo tồn thiên nhiên, giảm thiểu tác động đến môi trường hang động.',
-        'highlights': ['Động Phong Nha', 'Suối Nước Moọc', 'Tour bảo tồn động vật hoang dã', 'Rừng nguyên sinh']
+        'tagline': 'Vương quốc hang động & rừng nguyên sinh UNESCO',
+        'description': 'Vườn quốc gia Phong Nha - Kẻ Bàng, Di sản UNESCO với hệ thống hang động lớn nhất thế giới. Tham gia bảo tồn rừng nhiệt đới và khám phá hệ sinh thái độc đáo bậc nhất Đông Nam Á.',
+        'image': 'https://images.unsplash.com/photo-1638793769353-f0446534b52e?w=800&q=80&fit=crop',
+        'hero': 'https://images.unsplash.com/photo-1638793769353-f0446534b52e?w=1920&q=85&fit=crop',
+        'days': '3-4 ngày',
+        'priceFrom': 3_500_000,
+        'greenPoints': 155,
+        'co2Saved': 44,
+        'highlights': [
+            'Khám phá động Phong Nha và hang Tối huyền bí',
+            'Tham gia trồng cây tái tạo rừng với kiểm lâm',
+            'Kayaking trên sông Son xanh ngắt',
+            'Homestay tại bản Phong Nha cạnh vườn quốc gia',
+            'Đạp xe qua làng quê Quảng Bình nguyên sơ',
+        ],
+        'color': '#3d6b52',
+        'patternColor': '#7a9e7e',
+        'difficulty': 'Trung bình',
+        'bestSeason': 'Tháng 2 - 8',
+        'groupSize': '6-14 người',
     },
     {
-        'id': 'cat-ba',
-        'name': 'Cát Bà, Hải Phòng',
-        'region': 'Miền Bắc',
-        'image': 'https://images.unsplash.com/photo-1627916972049-340915a133f9?auto=format&fit=crop&q=80',
-        'description': 'Khu dự trữ sinh quyển thế giới Cát Bà mang đến trải nghiệm du lịch xanh giữa biển đảo. Tham gia dọn rác bãi biển, trồng rừng ngập mặn và bảo tồn voọc Cát Bà.',
-        'highlights': ['Vườn quốc gia Cát Bà', 'Vịnh Lan Hạ', 'Làng chài Việt Hải', 'Chèo Kayak nhặt rác']
-    }
+        'id': 'nam-cat-tien',
+        'name': 'Nam Cát Tiên, Đồng Nai',
+        'region': 'Miền Nam',
+        'tagline': 'Xanh gắn với bảo tồn rừng nhiệt đới nguyên sinh',
+        'description': (
+            'Vườn Quốc gia Cát Tiên – khu dự trữ sinh quyển thế giới UNESCO '
+            'với hơn 350 loài chim và 100 loài thú quý hiếm. Trải nghiệm safari '
+            'đêm, ngủ trong rừng nguyên sinh và tham gia bảo tồn động vật hoang dã '
+            'cùng các chuyên gia kiểm lâm Việt Nam.'
+        ),
+        'image': '/static/img/places/namcattien.jpg',
+        'hero': '/static/img/places/namcattien.jpg',
+        'days': '2-3 ngày',
+        'priceFrom': 2_900_000,
+        'greenPoints': 165,
+        'co2Saved': 18,
+        'highlights': [
+            'Safari đêm phát hiện thú rừng: nai, lợn rừng, mèo rừng',
+            'Birdwatching sáng sớm với chuyên gia ornithologist',
+            'Tham gia chương trình bảo tồn tê giác một sừng (Rhino Fund)',
+            'Ngủ nhà sàn trong vùng lõi vườn quốc gia',
+            'Thuyền kayak trên sông Đồng Nai nguyên sinh',
+        ],
+        'color': '#3d7a4a',
+        'patternColor': '#6aaa5e',
+        'difficulty': 'Dễ',
+        'bestSeason': 'Tháng 11 - 4 (mùa khô)',
+        'groupSize': '6-16 người',
+    },
 ]
 
 TOURS = [
     {
-        'id': 'tour-lo-lo-chai-1',
-        'title': 'Hành Trình Văn Hóa Lô Lô Chải',
+        'id': 'lo-lo-chai-culture',
         'destinationId': 'lo-lo-chai',
-        'duration': '3 Ngày 2 Đêm',
-        'price': 3500000,
-        'image': 'https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&q=80',
-        'greenPoints': 300,
-        'co2Saved': 45.5,
-        'description': 'Trải nghiệm cuộc sống người Lô Lô, học làm đồ thủ công truyền thống và tham gia dọn dẹp môi trường làng bản.',
+        'name': 'Lô Lô Chải - Hành Trình Văn Hoá Bản Địa',
+        'image': '/static/img/places/nhasansungmilu.jpg',
+        'duration': '4 ngày 3 đêm',
+        'price': 4_500_000,
+        'greenPoints': 160,
+        'co2Saved': 52,
+        'maxGuests': 12,
+        'difficulty': 'Trung bình',
+        'includes_flight': False,
+        'departure': 'Hà Nội',
+        'description': 'Hành trình văn hóa bản địa tại cực Bắc, nơi du khách sống cùng gia đình Lô Lô, học nghề thủ công và hỗ trợ sinh kế cộng đồng.',
         'itinerary': [
-            {'day': 1, 'content': 'Hà Giang - Lũng Cú. Nhận phòng homestay Lô Lô, giao lưu văn hóa.'},
-            {'day': 2, 'content': 'Tham gia dọn dẹp đường làng, học thêu thổ cẩm cùng phụ nữ bản.'},
-            {'day': 3, 'content': 'Thăm Cột Cờ Lũng Cú, trekking nhẹ nhàng và trở về Hà Giang.'}
+            {'day': 1, 'title': 'Hà Nội -> Hà Giang -> Đồng Văn', 'activities': ['Khởi hành từ Hà Nội 6:00 sáng bằng xe 16 chỗ', 'Ghé Cột cờ Lũng Cú', 'Check-in homestay nhà sàn tại Đồng Văn'], 'meals': 'Trưa, Tối', 'accommodation': 'Homestay nhà sàn - bản Lô Lô Chải'},
+            {'day': 2, 'title': 'Dệt Thổ Cẩm & Khám Phá Bản Làng', 'activities': ['Thăm chợ phiên Đồng Văn', 'Trekking 3km đến bản Lô Lô Chải', 'Workshop dệt thổ cẩm với nghệ nhân địa phương'], 'meals': 'Sáng, Trưa, Tối', 'accommodation': 'Nhà sàn truyền thống'},
+            {'day': 3, 'title': 'Cao Nguyên Đá Đồng Văn', 'activities': ['Trekking thung lũng Sảng Tủng', 'Làm bánh tam giác mạch', 'Tham quan phố cổ Đồng Văn'], 'meals': 'Sáng, Trưa, Tối', 'accommodation': 'Nhà sàn truyền thống'},
+            {'day': 4, 'title': 'Lô Lô Chải -> Hà Nội', 'activities': ['Chào tạm biệt gia đình người Lô Lô', 'Mua quà thổ cẩm hỗ trợ cộng đồng', 'Khởi hành về Hà Nội'], 'meals': 'Sáng, Trưa', 'accommodation': 'Không'},
         ],
-        'included': ['Homestay bản địa', 'Ăn uống thực phẩm địa phương', 'Hướng dẫn viên bản địa', 'Vật dụng bảo vệ môi trường'],
-        'notIncluded': ['Vé máy bay', 'Chi tiêu cá nhân'],
-        'greenActivities': ['Dọn rác đường làng', 'Sử dụng bình nước cá nhân', 'Không túi nilon']
+        'included': ['Xe 16 chỗ đời mới khứ hồi', 'Homestay 3 đêm', 'Bữa ăn theo lịch trình', 'HDV địa phương song ngữ', 'Vé tham quan', 'Workshop thổ cẩm', 'Bảo hiểm du lịch'],
+        'notIncluded': ['Chi phí cá nhân', 'Đồ uống có cồn', 'Tip hướng dẫn viên'],
+        'greenActivities': ['100% tiền homestay giữ lại với gia đình Lô Lô', 'Mua thổ cẩm trực tiếp từ nghệ nhân', 'Dùng bình nước cá nhân, không nhựa dùng một lần', 'Đi bộ trekking thay vì xe máy'],
     },
     {
-        'id': 'tour-mang-den-1',
-        'title': 'Măng Đen - Trồng Rừng & Tình Nguyện',
+        'id': 'mang-den-volunteer',
         'destinationId': 'mang-den',
-        'duration': '4 Ngày 3 Đêm',
-        'price': 4200000,
-        'image': 'https://images.unsplash.com/photo-1598436814911-37d363b963a7?auto=format&fit=crop&q=80',
-        'greenPoints': 400,
-        'co2Saved': 80.0,
-        'description': 'Khám phá thiên nhiên Măng Đen, tham gia dự án trồng thông và giao lưu với trẻ em làng Kon Pring.',
+        'name': 'Măng Đen - Hành Trình Thiện Nguyện Xanh',
+        'image': '/static/img/places/homestayrungthong.jpg',
+        'duration': '3 ngày 2 đêm',
+        'price': 3_800_000,
+        'greenPoints': 185,
+        'co2Saved': 38,
+        'maxGuests': 15,
+        'difficulty': 'Dễ',
+        'includes_flight': True,
+        'departure': 'TP.HCM',
+        'description': 'Chuyến đi kết hợp rừng thông, văn hóa Tây Nguyên và hoạt động thiện nguyện giáo dục cho trẻ em Xê Đăng.',
         'itinerary': [
-            {'day': 1, 'content': 'Đến Măng Đen, thăm thác Pa Sỹ, nhận phòng homestay sinh thái.'},
-            {'day': 2, 'content': 'Tham gia dự án trồng thông tại rừng phòng hộ Măng Đen.'},
-            {'day': 3, 'content': 'Giao lưu cộng đồng làng Kon Pring, dạy học hoặc chơi cùng trẻ em.'},
-            {'day': 4, 'content': 'Thăm hồ Đăk Ke, tổng kết hành trình xanh.'}
+            {'day': 1, 'title': 'TP.HCM -> Pleiku -> Măng Đen', 'activities': ['Bay sáng TP.HCM-Pleiku', 'Ghé làng cổ Kon Klor', 'Check-in homestay rừng thông Măng Đen'], 'meals': 'Trưa, Tối', 'accommodation': 'Homestay Rừng Thông'},
+            {'day': 2, 'title': 'Ngày Thiện Nguyện Đầy Ý Nghĩa', 'activities': ['Dạy Tiếng Anh và vẽ cho học sinh Xê Đăng', 'Trồng 50 cây thông/người', 'Sơn lại lớp học và tặng đồ dùng học tập'], 'meals': 'Sáng, Trưa, Tối', 'accommodation': 'Homestay Rừng Thông'},
+            {'day': 3, 'title': 'Khám Phá Vẻ Đẹp Măng Đen', 'activities': ['Trekking đến thác Đăk Ke', 'Thăm hồ Pa Sỹ', 'Bay về TP.HCM chiều'], 'meals': 'Sáng, Trưa', 'accommodation': 'Không'},
         ],
-        'included': ['Cây giống trồng rừng', 'Lưu trú sinh thái', 'Di chuyển xe chung', 'Bảo hiểm'],
-        'notIncluded': ['Vé máy bay/xe khách đến Kon Tum'],
-        'greenActivities': ['Trồng cây xanh', 'Ăn chay 1 bữa', 'Di chuyển xe đạp']
+        'included': ['Vé máy bay khứ hồi TP.HCM-Pleiku', 'Xe đưa đón sân bay', 'Homestay 2 đêm', 'Bữa ăn theo lịch', 'Vật tư thiện nguyện', 'HDV + bảo hiểm'],
+        'notIncluded': ['Phụ phí hành lý ký gửi', 'Chi phí cá nhân', 'Bữa ăn ngoài lịch'],
+        'greenActivities': ['Trồng 50 cây thông tái tạo rừng/người', 'Hỗ trợ giáo dục 30+ trẻ em dân tộc', '100% homestay cho gia đình địa phương', 'Không nhựa dùng một lần suốt hành trình'],
     },
     {
-        'id': 'tour-tien-giang-1',
-        'title': 'Miền Tây Zero Waste Tour',
-        'destinationId': 'tien-giang',
-        'duration': '2 Ngày 1 Đêm',
-        'price': 1800000,
-        'image': 'https://images.unsplash.com/photo-1604928169976-5832049e6123?auto=format&fit=crop&q=80',
-        'greenPoints': 200,
-        'co2Saved': 25.0,
-        'description': 'Du lịch miền Tây không rác thải nhựa, kết hợp trồng bần giữ đất và đạp xe dạo quanh miệt vườn.',
+        'id': 'mekong-green',
+        'destinationId': 'tien-giang-ben-tre',
+        'name': 'Mekong Xanh - Bảo Vệ Sông Nước',
+        'image': '/static/img/places/homestayvuondua.jpg',
+        'duration': '2 ngày 2 đêm',
+        'price': 2_800_000,
+        'greenPoints': 140,
+        'co2Saved': 28,
+        'maxGuests': 20,
+        'difficulty': 'Dễ',
+        'includes_flight': False,
+        'departure': 'TP.HCM',
+        'description': 'Tour miền Tây ngắn ngày tập trung vào trồng cây ven sông, dọn rác Mekong và trải nghiệm làng nghề không nhựa.',
         'itinerary': [
-            {'day': 1, 'content': 'Sài Gòn - Tiền Giang. Đạp xe quanh cồn, tham quan vườn trái cây sạch.'},
-            {'day': 2, 'content': 'Chèo ghe vớt rác trên kênh, trồng bần chống sạt lở ven sông.'}
+            {'day': 1, 'title': 'TP.HCM -> Tiền Giang -> Bến Tre', 'activities': ['Khởi hành từ TP.HCM 7:00', 'Chèo thuyền khám phá kênh rạch', 'Trồng 10 cây dừa/người', 'Học làm kẹo dừa thủ công'], 'meals': 'Trưa, Tối', 'accommodation': 'Homestay Vườn Dừa Xanh'},
+            {'day': 2, 'title': 'Bảo Vệ Sông Mekong & Về TP.HCM', 'activities': ['Dọn rác ven sông chiến dịch #SạchSôngMekong', 'Workshop tái chế rác', 'Thăm chợ nổi Cái Bè'], 'meals': 'Sáng, Trưa', 'accommodation': 'Không'},
         ],
-        'included': ['Homestay miệt vườn', 'Ăn uống đặc sản', 'Xe đạp', 'Dụng cụ vớt rác'],
-        'notIncluded': ['Chi tiêu cá nhân'],
-        'greenActivities': ['Vớt rác trên sông', 'Zero-waste', 'Di chuyển xe đạp']
+        'included': ['Xe 45 chỗ khứ hồi', 'Thuyền nội địa', 'Homestay 1 đêm', 'Bữa ăn theo lịch', 'Cây giống + dụng cụ', 'HDV + bảo hiểm'],
+        'notIncluded': ['Mua sắm cá nhân tại chợ nổi'],
+        'greenActivities': ['Trồng 10 cây dừa/người', 'Dọn khoảng 12kg rác ven sông/nhóm', '100% bình nước cá nhân', 'Ăn uống không nhựa dùng một lần'],
     },
     {
-        'id': 'tour-pu-luong-1',
-        'title': 'Pù Luông Trekking Sinh Thái',
-        'destinationId': 'pu-luong',
-        'duration': '3 Ngày 2 Đêm',
-        'price': 2900000,
-        'image': 'https://images.unsplash.com/photo-1579450841285-1d033758b991?auto=format&fit=crop&q=80',
-        'greenPoints': 350,
-        'co2Saved': 50.0,
-        'description': 'Trekking qua các bản làng, nghỉ tại nhà sàn truyền thống và hỗ trợ người dân cải tạo hệ thống tưới tiêu.',
+        'id': 'cat-tien-wild',
+        'destinationId': 'nam-cat-tien',
+        'name': 'Cát Tiên - Hành Trình Rừng Xanh & Bảo Tồn',
+        'image': '/static/img/places/namcattien.jpg',
+        'duration': '2 ngày 2 đêm',
+        'price': 2_900_000,
+        'greenPoints': 165,
+        'co2Saved': 18,
+        'maxGuests': 16,
+        'difficulty': 'Dễ',
+        'includes_flight': False,
+        'departure': 'TP.HCM',
+        'description': 'Hành trình rừng xanh gần TP.HCM với safari đêm, birdwatching và hoạt động bảo tồn cùng kiểm lâm Cát Tiên.',
         'itinerary': [
-            {'day': 1, 'content': 'Hà Nội - Pù Luông. Trekking từ Bản Đôn, nhận phòng nhà sàn.'},
-            {'day': 2, 'content': 'Trekking Bản Hiêu, hỗ trợ dân làng dọn dẹp kênh mương thủy lợi.'},
-            {'day': 3, 'content': 'Thăm chợ phiên, mua nông sản ủng hộ địa phương và trở về.'}
+            {
+                'day': 1, 'title': 'TP.HCM -> Cát Tiên -> Safari Đêm',
+                'activities': [
+                    'Khởi hành TP.HCM 7:00 bằng xe 16 chỗ (~2.5h)',
+                    'Nhận phòng nhà sàn vùng lõi, ăn trưa đặc sản bản địa',
+                    'Chiều: Kayak trên sông Đồng Nai - quan sát chim nước',
+                    'Birdwatching: nhận diện chim sả, cò thìa, diều hâu',
+                    'Tối: Safari xe jeep 20:30 - 22:30 (nai, lợn rừng, mèo rừng)',
+                ],
+                'meals': 'Trưa, Tối',
+                'accommodation': 'Nhà sàn VQG Cát Tiên',
+            },
+            {
+                'day': 2, 'title': 'Bảo Tồn Hoang Dã & Về TP.HCM',
+                'activities': [
+                    'Sáng sớm 5:30: Birdwatching với chuyên gia tại đầm Bàu Sấu',
+                    'Tham gia gắn camera bẫy theo dõi thú rừng với kiểm lâm',
+                    'Thăm Trung tâm Cứu hộ Động vật Hoang dã Cát Tiên',
+                    'Trồng 5 cây bản địa trong khuôn viên vườn quốc gia',
+                    'Trưa, khởi hành về TP.HCM 13:00, về 15:30',
+                ],
+                'meals': 'Sáng, Trưa',
+                'accommodation': 'Không',
+            },
         ],
-        'included': ['Lưu trú nhà sàn', 'Ăn uống bản địa', 'HDV địa phương'],
-        'notIncluded': ['Tiền tip'],
-        'greenActivities': ['Trekking', 'Hỗ trợ nông nghiệp', 'Mua nông sản bản địa']
+        'included': [
+            'Xe 16 chỗ khứ hồi', 'Vé vào VQG + phí bảo tồn',
+            'Nhà sàn 1 đêm', 'Bữa ăn theo lịch', 'Xe jeep safari',
+            'Hướng dẫn viên kiểm lâm chuyên nghiệp', 'Bảo hiểm',
+        ],
+        'notIncluded': ['Đồ uống cá nhân', 'Tip tự nguyện cho kiểm lâm'],
+        'greenActivities': [
+            'Phí bảo tồn 50k/người -> Quỹ Bảo tồn Động vật Hoang dã',
+            'Trồng 5 cây bản địa phục hồi rừng',
+            'Hỗ trợ dữ liệu nghiên cứu khoa học thực địa',
+            'Không có hoạt động nào gây stress cho động vật',
+        ],
     },
-    {
-        'id': 'tour-phong-nha-1',
-        'title': 'Phong Nha - Khám Phá Rừng & Hang Động Xanh',
-        'destinationId': 'phong-nha',
-        'duration': '3 Ngày 2 Đêm',
-        'price': 4500000,
-        'image': 'https://images.unsplash.com/photo-1563293816-17b5f54314c4?auto=format&fit=crop&q=80',
-        'greenPoints': 350,
-        'co2Saved': 40.0,
-        'description': 'Khám phá vẻ đẹp Phong Nha kết hợp tìm hiểu công tác cứu hộ động vật hoang dã tại Vườn Quốc Gia.',
-        'itinerary': [
-            {'day': 1, 'content': 'Tham quan Động Phong Nha bằng xuồng máy thân thiện môi trường.'},
-            {'day': 2, 'content': 'Eco-tour bảo tồn: tìm hiểu trung tâm cứu hộ động vật hoang dã.'},
-            {'day': 3, 'content': 'Chèo kayak tại Suối Nước Moọc, cam kết không sử dụng nhựa.'}
-        ],
-        'included': ['Homestay thân thiện', 'Vé tham quan', 'Đóng góp quỹ bảo tồn'],
-        'notIncluded': ['Chi phí di chuyển đến Phong Nha'],
-        'greenActivities': ['Không rác nhựa', 'Hỗ trợ quỹ bảo tồn động vật', 'Di chuyển chèo thuyền']
-    },
-    {
-        'id': 'tour-cat-ba-1',
-        'title': 'Cát Bà - Chiến Dịch Biển Sạch',
-        'destinationId': 'cat-ba',
-        'duration': '2 Ngày 1 Đêm',
-        'price': 2100000,
-        'image': 'https://images.unsplash.com/photo-1627916972049-340915a133f9?auto=format&fit=crop&q=80',
-        'greenPoints': 250,
-        'co2Saved': 30.0,
-        'description': 'Kết hợp nghỉ dưỡng tại vịnh Lan Hạ và tham gia hoạt động chèo kayak dọn rác bảo vệ môi trường biển.',
-        'itinerary': [
-            {'day': 1, 'content': 'Hà Nội - Cát Bà. Nhận phòng homestay sinh thái, thăm làng Việt Hải.'},
-            {'day': 2, 'content': 'Chèo Kayak vịnh Lan Hạ kết hợp dọn rác trên mặt biển và vách đá.'}
-        ],
-        'included': ['Lưu trú sinh thái', 'Thuyền kayak', 'Dụng cụ nhặt rác', 'Ăn uống hải sản bền vững'],
-        'notIncluded': ['Chi tiêu cá nhân'],
-        'greenActivities': ['Dọn rác biển', 'Di chuyển bằng xe đạp tại làng Việt Hải', 'Bảo tồn Voọc']
-    }
 ]
 
 HOMESTAYS = [
     {
-        'id': 'hs-lolo-1',
-        'name': 'Lolo Village Homestay',
+        'id': 'hs-lo-lo-1',
+        'name': 'Nhà Sàn Gia Đình Chú Sùng Mí Lử',
+        'location': 'Bản Lô Lô Chải, Lũng Cú, Đồng Văn, Hà Giang',
         'destinationId': 'lo-lo-chai',
-        'image': 'https://images.unsplash.com/photo-1621508654686-809f23efdabc?auto=format&fit=crop&q=80',
-        'greenScore': 90,
-        'features': ['Nhà trình tường', 'Năng lượng mặt trời', 'Không nhựa dùng 1 lần', 'Thực phẩm hữu cơ']
-    },
-    {
-        'id': 'hs-mangden-1',
-        'name': 'Bạch Dương Eco-Homestay',
-        'destinationId': 'mang-den',
-        'image': 'https://images.unsplash.com/photo-1542718610-a1d656d1884c?auto=format&fit=crop&q=80',
-        'greenScore': 85,
-        'features': ['Gỗ tái chế', 'Trồng rau sạch', 'Thu gom nước mưa']
-    },
-    {
-        'id': 'hs-tiengiang-1',
-        'name': 'Mekong Rustic',
-        'destinationId': 'tien-giang',
-        'image': 'https://images.unsplash.com/photo-1596423735880-5fec6d46dc72?auto=format&fit=crop&q=80',
+        'image': '/static/img/places/nhasansungmilu.jpg',
+        'pricePerNight': 280_000,
         'greenScore': 95,
-        'features': ['Kiến trúc lá dừa', 'Ủ phân hữu cơ', 'Sản phẩm tẩy rửa sinh học', 'Zero Waste']
+        'certifications': ['Năng lượng mặt trời', 'Không nhựa 1 lần', 'Nguyên liệu địa phương', 'Phân loại rác', 'Hỗ trợ cộng đồng'],
+        'highlights': ['Nhà sàn truyền thống 120 năm tuổi', 'Bữa ăn 100% từ rau vườn nhà', 'Workshop dệt thổ cẩm miễn phí', '100% thu nhập cho gia đình người Lô Lô'],
+        'rating': 4.9,
+        'reviews': 87,
     },
     {
-        'id': 'hs-puluong-1',
-        'name': 'Pù Luông Eco Garden',
-        'destinationId': 'pu-luong',
-        'image': 'https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&q=80',
-        'greenScore': 88,
-        'features': ['Nhà sàn truyền thống', 'Vật liệu tự nhiên', 'Không rác nhựa', 'Hỗ trợ cộng đồng']
-    },
-    {
-        'id': 'hs-phongnha-1',
-        'name': 'Phong Nha Farmstay',
-        'destinationId': 'phong-nha',
-        'image': 'https://images.unsplash.com/photo-1444201983204-c43cbd584d93?auto=format&fit=crop&q=80',
-        'greenScore': 92,
-        'features': ['Năng lượng mặt trời', 'Nông nghiệp sạch', 'Bể bơi tự nhiên']
-    }
-]
-
-PLASTIC_FREE_SPOTS = [
-    {
-        'id': 'pf-lolo-1',
-        'name': 'Cà Phê Cực Bắc',
-        'type': 'Quán Cafe',
-        'destinationId': 'lo-lo-chai',
-        'description': 'Sử dụng ly sứ và ống hút tre 100%'
-    },
-    {
-        'id': 'pf-mangden-1',
-        'name': 'Măng Đen Chay',
-        'type': 'Nhà Hàng',
+        'id': 'hs-mang-den-1',
+        'name': 'Homestay Rừng Thông A Lăng',
+        'location': 'Thôn 4, Măng Đen, Kon Plông, Kon Tum',
         'destinationId': 'mang-den',
-        'description': 'Nhà hàng chay sử dụng khay gỗ, mẹt tre, không túi nilon'
+        'image': '/static/img/places/homestayrungthong.jpg',
+        'pricePerNight': 350_000,
+        'greenScore': 92,
+        'certifications': ['Pin mặt trời 5kW', 'Hệ thống thu nước mưa', 'Thực phẩm organic', 'Phân loại rác', 'Quỹ học bổng địa phương'],
+        'highlights': ['Giữa rừng thông nguyên sinh 300ha', 'Điện 100% năng lượng mặt trời', 'Rau củ organic từ vườn nhà', 'Đóng góp quỹ học bổng trẻ em Xê Đăng'],
+        'rating': 4.8,
+        'reviews': 124,
     },
     {
-        'id': 'pf-tiengiang-1',
-        'name': 'Chợ Quê Sinh Thái Cồn Thới Sơn',
-        'type': 'Khu Chợ',
-        'destinationId': 'tien-giang',
-        'description': 'Gói hàng bằng lá chuối, khuyến khích mang làn/giỏ đi chợ'
+        'id': 'hs-mekong-1',
+        'name': 'Homestay Vườn Dừa Xanh Chị Hai Loan',
+        'location': 'Xã Phú Túc, Châu Thành, Bến Tre',
+        'destinationId': 'tien-giang-ben-tre',
+        'image': '/static/img/places/homestayvuondua.jpg',
+        'pricePerNight': 320_000,
+        'greenScore': 90,
+        'certifications': ['Hệ thống biogas', 'Không nhựa 1 lần', 'Vườn hữu cơ 2ha', 'Phân loại + ủ compost', 'Trồng cây hàng tuần'],
+        'highlights': ['Vườn dừa hữu cơ 2 hecta', 'Trái cây tươi theo mùa miễn phí', 'Bể xử lý nước thải biogas', 'Dạy làm kẹo dừa và nem cuốn'],
+        'rating': 4.7,
+        'reviews': 98,
     },
     {
-        'id': 'pf-phongnha-1',
-        'name': 'Eco Station',
-        'type': 'Quán Cafe & Refill',
-        'destinationId': 'phong-nha',
-        'description': 'Trạm làm đầy nước miễn phí, bán đồ dùng thân thiện môi trường'
-    }
+        'id': 'hs-pu-luong-1',
+        'name': 'Nhà Sàn Bản Đôn - Gia Đình Anh Hà Văn Thành',
+        'location': 'Bản Đôn, Bá Thước, Thanh Hóa',
+        'destinationId': 'pu-luong',
+        'image': '/static/img/places/nhasanbandon.jpg',
+        'pricePerNight': 250_000,
+        'greenScore': 88,
+        'certifications': ['Nước suối tự nhiên', 'Không nhựa 1 lần', 'Rau rừng địa phương', 'Phân loại rác'],
+        'highlights': ['Nhà sàn gỗ truyền thống dân tộc Thái Trắng', 'Ngủ trên sàn gỗ, nghe tiếng suối chảy', 'Ăn cơm lam, cá suối nướng', 'Hướng dẫn trekking tự do quanh bản'],
+        'rating': 4.6,
+        'reviews': 62,
+    },
+    {
+        'id': 'hs-cat-tien-1',
+        'name': 'Nhà Sàn Vườn Quốc Gia Cát Tiên',
+        'location': 'Vùng lõi VQG Cát Tiên, Tân Phú, Đồng Nai',
+        'destinationId': 'nam-cat-tien',
+        'image': '/static/img/places/namcattien.jpg',
+        'pricePerNight': 420_000,
+        'greenScore': 96,
+        'certifications': [
+            'Zero-emission zone', 'Năng lượng mặt trời 8kW',
+            'Không nhựa 1 lần', 'Thực phẩm địa phương',
+            'Đóng góp Quỹ Bảo tồn Động vật Hoang dã'
+        ],
+        'highlights': [
+            'Nhà sàn trong vùng lõi rừng nguyên sinh',
+            '100% năng lượng mặt trời, không máy phát điện',
+            'Bữa sáng rau rừng + đặc sản người S\'tiêng',
+            'Hướng dẫn viên là cựu kiểm lâm viên 20 năm kinh nghiệm',
+        ],
+        'rating': 4.9,
+        'reviews': 43,
+    },
 ]
 
 COMMUNITY_ACTIVITIES = [
-    {
-        'id': 'act-1',
-        'title': 'Dọn Rác Bản Làng',
-        'destinationId': 'lo-lo-chai',
-        'type': 'Môi trường',
-        'duration': '2 giờ',
-        'gp_reward': 50,
-        'impact': '10kg rác thu gom'
-    },
-    {
-        'id': 'act-2',
-        'title': 'Trồng Rừng Thông',
-        'destinationId': 'mang-den',
-        'type': 'Môi trường',
-        'duration': '3 giờ',
-        'gp_reward': 100,
-        'impact': '5 cây thông được trồng'
-    },
-    {
-        'id': 'act-3',
-        'title': 'Dạy Tiếng Anh Trẻ Em',
-        'destinationId': 'mang-den',
-        'type': 'Giáo dục',
-        'duration': '2 giờ',
-        'gp_reward': 80,
-        'impact': '15 trẻ em tham gia'
-    },
-    {
-        'id': 'act-4',
-        'title': 'Trồng Cây Bần Chống Sạt Lở',
-        'destinationId': 'tien-giang',
-        'type': 'Môi trường',
-        'duration': '4 giờ',
-        'gp_reward': 120,
-        'impact': '20 cây bần được trồng'
-    },
-    {
-        'id': 'act-5',
-        'title': 'Làm Kênh Mương Thủy Lợi',
-        'destinationId': 'pu-luong',
-        'type': 'Cộng đồng',
-        'duration': '3 giờ',
-        'gp_reward': 90,
-        'impact': 'Hỗ trợ 5 hộ nông dân'
-    },
-    {
-        'id': 'act-6',
-        'title': 'Cứu Hộ Động Vật Hoang Dã',
-        'destinationId': 'phong-nha',
-        'type': 'Bảo tồn',
-        'duration': 'Nửa ngày',
-        'gp_reward': 150,
-        'impact': 'Đóng góp 200,000VNĐ vào quỹ'
-    }
+    {'id': 'ca-1', 'title': 'Workshop Thổ Cẩm Người Lô Lô', 'destinationId': 'lo-lo-chai', 'type': 'Văn hóa bản địa', 'duration': '3 giờ', 'price': 220_000, 'greenPoints': 50, 'description': 'Học dệt thổ cẩm với nghệ nhân địa phương và hiểu ý nghĩa từng hoa văn.', 'impact': '100% tiền workshop đến tay nghệ nhân - không qua trung gian', 'image': '/static/img/places/workshopthocamnguoilolochai.jpg'},
+    {'id': 'ca-2', 'title': 'Lớp Học Tình Nguyện Trẻ Em Xê Đăng', 'destinationId': 'mang-den', 'type': 'Giáo dục cộng đồng', 'duration': '1 ngày (6 tiết)', 'price': 0, 'greenPoints': 100, 'description': 'Cùng dạy Tiếng Anh, vẽ và âm nhạc cho học sinh dân tộc Xê Đăng.', 'impact': 'Hỗ trợ trực tiếp 30+ học sinh dân tộc thiểu số', 'image': '/static/img/places/lophoctinhnguyen.jpg'},
+    {'id': 'ca-3', 'title': 'Trồng Cây Phục Hồi Rừng Ngập Mặn', 'destinationId': 'tien-giang-ben-tre', 'type': 'Bảo vệ môi trường', 'duration': '2.5 giờ', 'price': 150_000, 'greenPoints': 70, 'description': 'Trồng cây dừa nước và đước phục hồi rừng ngập mặn ven sông Mekong.', 'impact': 'Mỗi cây hấp thụ khoảng 21kg CO2/năm', 'image': 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=600&q=80&fit=crop'},
+    {'id': 'ca-4', 'title': 'Chiến Dịch #SạchSôngMekong', 'destinationId': 'tien-giang-ben-tre', 'type': 'Bảo vệ môi trường', 'duration': '2 giờ', 'price': 0, 'greenPoints': 80, 'description': 'Tham gia dọn rác ven kênh rạch Bến Tre với cộng đồng ngư dân.', 'impact': 'Trung bình 12-15kg rác nhựa/nhóm', 'image': 'https://images.unsplash.com/photo-1618477461853-cf6ed80faba5?w=600&q=80&fit=crop'},
+    {'id': 'ca-5', 'title': 'Mua Đặc Sản Trực Tiếp Từ Nông Hộ', 'destinationId': 'lo-lo-chai', 'type': 'Hỗ trợ sinh kế', 'duration': 'Linh hoạt', 'price': 300_000, 'greenPoints': 60, 'description': 'Mua thổ cẩm, mật ong bạc hà, tam giác mạch rang trực tiếp từ hộ sản xuất.', 'impact': 'Thu nhập bền vững cho 24 hộ gia đình dệt thổ cẩm tại bản', 'image': '/static/img/places/muadacsantructiep.jpg'},
+    {'id': 'ca-7', 'title': 'Bảo Tồn Động Vật Hoang Dã Cát Tiên', 'destinationId': 'nam-cat-tien', 'type': 'Bảo tồn thiên nhiên', 'duration': '4 giờ', 'price': 380_000, 'greenPoints': 95, 'description': 'Tham gia khảo sát, gắn camera bẫy và theo dõi đàn thú với kiểm lâm VQG Cát Tiên. Học cách nhận diện dấu chân, phân biệt tiếng kêu các loài thú và hiểu hệ sinh thái rừng nhiệt đới.', 'impact': 'Hỗ trợ dữ liệu cho chương trình bảo tồn tê giác, bò tót, voi', 'image': '/static/img/places/namcattien.jpg'},
+]
+
+PLASTIC_FREE_SPOTS = [
+    {'id': 'pf-1', 'type': 'Trạm Refill Nước', 'name': 'Quán Cà Phê Sương Mây', 'location': 'Phố cổ Đồng Văn, Hà Giang', 'destinationId': 'lo-lo-chai', 'description': 'Refill bình nước lọc miễn phí, cà phê ngô đặc sản'},
+    {'id': 'pf-2', 'type': 'Quán Ăn Không Nhựa', 'name': 'Cơm Nhà Chị Phương', 'location': 'Thôn 5, Măng Đen, Kon Tum', 'destinationId': 'mang-den', 'description': '100% không nhựa, nguyên liệu organic địa phương'},
+    {'id': 'pf-3', 'type': 'Cửa Hàng Thủ Công', 'name': 'Làng Nghề Mây Tre Phú An', 'location': 'Châu Thành, Bến Tre', 'destinationId': 'tien-giang-ben-tre', 'description': 'Sản phẩm mây tre thay thế nhựa hoàn toàn'},
+    {'id': 'pf-4', 'type': 'Homestay Xanh', 'name': 'Nhà Sàn Chú Sùng', 'location': 'Bản Lô Lô Chải, Hà Giang', 'destinationId': 'lo-lo-chai', 'description': 'Không nhựa dùng một lần, dùng gáo dừa và bát gỗ'},
+    {'id': 'pf-5', 'type': 'Nhà Hàng', 'name': 'Ẩm Thực Tây Nguyên A Nhing', 'location': 'Trung tâm Măng Đen, Kon Tum', 'destinationId': 'mang-den', 'description': 'Thực đơn từ rừng, phục vụ bằng lá chuối và đồ gỗ'},
+]
+
+GREEN_POINTS_LEVELS = [
+    {'level': 'Eco Beginner', 'minPoints': 0, 'maxPoints': 99, 'badge': 'Sapling', 'color': '#9aaf8a'},
+    {'level': 'Green Explorer', 'minPoints': 100, 'maxPoints': 299, 'badge': 'Leaf', 'color': '#6b8e5f'},
+    {'level': 'Eco Warrior', 'minPoints': 300, 'maxPoints': 599, 'badge': 'Tree', 'color': '#4a6b40'},
+    {'level': 'Sustainability Champion', 'minPoints': 600, 'maxPoints': 999, 'badge': 'Trophy', 'color': '#d4a84b'},
+    {'level': 'Green Legend', 'minPoints': 1000, 'maxPoints': 99999, 'badge': 'Globe', 'color': '#2c4a22'},
 ]
 
 GREEN_POINTS_REWARDS = [
-    {'id': 'rwd-1', 'title': 'Voucher Giảm 50% Homestay', 'cost': 500, 'type': 'voucher'},
-    {'id': 'rwd-2', 'title': 'Bộ Ống Hút Tre Tự Nhiên', 'cost': 150, 'type': 'merch'},
-    {'id': 'rwd-3', 'title': 'Bình Nước Giữ Nhiệt Lõi Inox', 'cost': 300, 'type': 'merch'},
-    {'id': 'rwd-4', 'title': 'Góp 1 Cây Xanh Quỹ Trồng Rừng', 'cost': 200, 'type': 'donation'},
-    {'id': 'rwd-5', 'title': 'Voucher Tour Giảm 10%', 'cost': 800, 'type': 'voucher'},
-    {'id': 'rwd-6', 'title': 'Túi Tote Sinh Thái Tái Chế', 'cost': 250, 'type': 'merch'}
+    {'id': 'r1', 'name': 'Voucher Giảm 500k Tour Tiếp Theo', 'points': 300, 'type': 'voucher', 'icon': 'ticket'},
+    {'id': 'r2', 'name': 'Túi Vải Canvas Green Experience', 'points': 150, 'type': 'product', 'icon': 'bag'},
+    {'id': 'r3', 'name': 'Bình Nước Inox 1L Có Khắc Tên', 'points': 120, 'type': 'product', 'icon': 'bottle'},
+    {'id': 'r4', 'name': 'Bộ Thổ Cẩm Thủ Công Lô Lô Chải', 'points': 220, 'type': 'product', 'icon': 'thread'},
+    {'id': 'r5', 'name': 'Certificate "Green Traveler" Digital', 'points': 80, 'type': 'certificate', 'icon': 'certificate'},
+    {'id': 'r6', 'name': 'Voucher Homestay Xanh 300k', 'points': 180, 'type': 'voucher', 'icon': 'home'},
+    {'id': 'r7', 'name': 'Cây Xanh Trồng Theo Tên Bạn (chứng nhận)', 'points': 100, 'type': 'special', 'icon': 'tree'},
 ]
 
-# Helper lookups
+for tour in TOURS:
+    tour.setdefault('title', tour['name'])
+    for day in tour.get('itinerary', []):
+        day.setdefault('content', '; '.join(day.get('activities', [])))
+
+for homestay in HOMESTAYS:
+    homestay.setdefault('features', homestay.get('certifications', []))
+
+for activity in COMMUNITY_ACTIVITIES:
+    activity.setdefault('gp_reward', activity.get('greenPoints', 0))
+
 DESTINATIONS_BY_ID = {d['id']: d for d in DESTINATIONS}
 TOURS_BY_ID = {t['id']: t for t in TOURS}
 TOURS_BY_DESTINATION = {}

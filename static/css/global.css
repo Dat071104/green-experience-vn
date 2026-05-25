@@ -212,17 +212,19 @@ a {
 .card-img-wrap {
   position: relative;
   width: 100%;
-  padding-top: 75%; /* 4/3 aspect ratio */
+  aspect-ratio: 16 / 10;
+  padding-top: 0;
   overflow: hidden;
+  border-radius: 20px 20px 0 0;
+  background-color: #c8dfc4;
 }
 .card-img-wrap img {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  object-position: center;
+  display: block;
+  transition: transform 0.4s ease;
 }
 .card:hover .card-img-wrap img {
   transform: scale(1.05);
@@ -267,6 +269,65 @@ a {
   padding: 0.25rem 0.75rem;
   font-size: 0.75rem;
   font-weight: 600;
+}
+
+.dest-card__img-wrap,
+.destination-card .card-image {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 20px 20px 0 0;
+  background-color: #c8dfc4;
+  position: relative;
+}
+
+.dest-card__img-wrap img,
+.destination-card .card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.dest-card:hover .dest-card__img-wrap img,
+.destination-card:hover .card-image img {
+  transform: scale(1.05);
+}
+
+.destination-hero,
+.hero-banner {
+  width: 100%;
+  height: 70vh;
+  min-height: 400px;
+  max-height: 700px;
+  overflow: hidden;
+  position: relative;
+}
+
+.destination-hero img,
+.hero-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+}
+
+img.card-img {
+  background: linear-gradient(135deg, #c8dfc4, #f5f2ec);
+  min-height: 200px;
+}
+
+.homestay-card .card-img,
+.tour-card .card-img,
+.activity-card .card-img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 16px 16px 0 0;
+  display: block;
 }
 
 /* Section Header */
@@ -561,5 +622,14 @@ textarea.form-control {
   }
   .nav-links {
     text-align: center;
+  }
+  .destination-hero,
+  .hero-banner {
+    height: 50vh;
+    min-height: 300px;
+  }
+  .dest-card__img-wrap,
+  .card-img-wrap {
+    aspect-ratio: 4 / 3;
   }
 }

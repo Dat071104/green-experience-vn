@@ -19,7 +19,11 @@ def destinations():
         filtered = DESTINATIONS
     else:
         filtered = [d for d in DESTINATIONS if d.get('region') == region]
-    return render_template('destinations.html', destinations=filtered, current_region=region)
+    regions = sorted(set(d['region'] for d in DESTINATIONS))
+    return render_template('destinations.html',
+                           destinations=filtered,
+                           current_region=region,
+                           regions=regions)
 
 @main_bp.route('/destinations/<dest_id>')
 def destination_detail(dest_id):

@@ -8,7 +8,7 @@
 {% block content %}
 <!-- HERO SECTION -->
 <section class="hero">
-  <img src="https://images.unsplash.com/photo-1695094412603-3340f1e72232?w=1920" alt="Vietnamese landscape" class="hero-bg">
+  <img src="https://images.unsplash.com/photo-1695094412603-3340f1e72232?w=1920" alt="Vietnamese landscape" class="hero-bg" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&q=85&fit=crop'">
   <div class="container hero-content">
     <h1 class="hero-title text-hero reveal">Green Experience –<br>Responsible Journey</h1>
     <p class="hero-subtitle reveal" style="transition-delay: 0.1s;">Đi xanh hơn, hiểu sâu hơn, để lại tác động tốt hơn</p>
@@ -52,7 +52,7 @@
       {% for dest in destinations %}
       <div class="card theme-{{ dest.id }} reveal">
         <div class="card-img-wrap">
-          <img src="{{ dest.image }}" alt="{{ dest.name }}" loading="lazy">
+          <img src="{{ dest.image }}" alt="{{ dest.name }}" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80&fit=crop'">
         </div>
         <div class="card-body">
           <span class="tag" style="align-self: flex-start; margin-bottom: 0.5rem;">{{ dest.region }}</span>
@@ -130,7 +130,7 @@
       <a href="/co2-calculator" class="btn btn-primary">Thử ngay máy tính CO₂ <i data-lucide="calculator"></i></a>
     </div>
     <div class="reveal" style="transition-delay: 0.2s;">
-      <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80" alt="Eco environment" class="co2-img" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80" alt="Eco environment" class="co2-img" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80&fit=crop'">
     </div>
   </div>
 </section>
