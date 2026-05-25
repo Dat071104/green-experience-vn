@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block title %}Đăng ký - Green Experience{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="auth-page">
+  <!-- Left Side: Hero Image -->
+  <div class="auth-left">
+    <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&q=80" alt="Green Nature" class="auth-bg">
+    <div class="auth-overlay"></div>
+    <div class="auth-logo">
+      <i data-lucide="leaf" style="color: var(--green-mint); width: 32px; height: 32px;"></i>
+      <div style="font-family: var(--font-display); font-weight: 700; font-size: 1.25rem;">Green Experience</div>
+    </div>
+    <h1 class="auth-quote reveal">Gia nhập cộng đồng<br>Du khách xanh</h1>
+    <p class="reveal" style="font-size: 1.1rem; opacity: 0.9; max-width: 400px; transition-delay: 0.1s;">Cùng chúng tôi tạo nên những thay đổi tích cực cho thiên nhiên và xã hội thông qua mỗi chuyến đi.</p>
+  </div>
+
+  <!-- Right Side: Register Form -->
+  <div class="auth-right reveal" style="transition-delay: 0.2s;">
+    <div class="auth-card">
+      <h2 class="text-h2" style="color: var(--green-pine); margin-bottom: 0.5rem;">Tạo tài khoản mới</h2>
+      <p class="text-muted" style="margin-bottom: 1.5rem;">Vui lòng điền thông tin bên dưới</p>
+
+      <form action="/register" method="POST">
+        <!-- Role Tabs -->
+        <div class="role-tabs">
+          <div class="role-tab active" data-role="user"><i data-lucide="user" style="width:16px;height:16px;vertical-align:middle;"></i> Du khách</div>
+          <div class="role-tab" data-role="staff"><i data-lucide="building" style="width:16px;height:16px;vertical-align:middle;"></i> Nhân viên</div>
+        </div>
+        <input type="hidden" name="role" id="role-input" value="user">
+
+        <div class="form-group">
+          <label class="form-label">Họ và tên</label>
+          <input type="text" class="form-control" name="name" required placeholder="Nguyễn Văn A">
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-control" name="email" required placeholder="your@email.com">
+        </div>
+        
+        <div class="grid-2" style="gap: 1rem; margin-bottom: 0;">
+          <div class="form-group">
+            <label class="form-label">Mật khẩu</label>
+            <div class="password-wrapper">
+              <input type="password" class="form-control" name="password" required placeholder="••••••••" minlength="8">
+              <button type="button" class="password-toggle"><i data-lucide="eye"></i></button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Xác nhận MK</label>
+            <div class="password-wrapper">
+              <input type="password" class="form-control" name="confirm_password" required placeholder="••••••••" minlength="8">
+              <button type="button" class="password-toggle"><i data-lucide="eye"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group" id="staff-code-group" style="display: none;">
+          <label class="form-label">Mã xác thực nhân viên</label>
+          <input type="text" class="form-control" name="staffCode" id="staff-code" placeholder="VD: STAFF2025">
+        </div>
+        
+        <div class="form-group" style="display: flex; align-items: flex-start; gap: 0.5rem; margin-top: 0.5rem;">
+          <input type="checkbox" id="terms" required style="accent-color: var(--green-primary); width: 16px; height: 16px; margin-top: 0.25rem;">
+          <label for="terms" style="font-size: 0.875rem; color: var(--text-secondary); cursor: pointer; line-height: 1.4;">Tôi đồng ý với <a href="#">Điều khoản sử dụng</a> và <a href="#">Chính sách bảo mật</a> của Green Experience.</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1.1rem; padding: 1rem; margin-top: 0.5rem;">Tạo tài khoản xanh 🌿</button>
+      </form>
+
+      <div style="text-align: center; margin-top: 2rem; font-size: 0.875rem; color: var(--text-secondary);">
+        Đã có tài khoản? <a href="/login" style="font-weight: 600;">Đăng nhập →</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/auth.js') }}"></script>
+{% endblock %}

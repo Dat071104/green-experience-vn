@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block title %}Hoạt Động Cộng Đồng - Green Experience{% endblock %}
+
+{% block content %}
+<section class="hero" style="min-height: 50vh; padding-top: 100px; background: url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80') center/cover no-repeat;">
+  <div style="position: absolute; top:0; left:0; width:100%; height:100%; background: var(--gradient-card);"></div>
+  <div class="container hero-content text-center" style="position: relative; z-index: 1;">
+    <h1 class="hero-title text-hero reveal" style="color: white;">Hoạt động cộng đồng</h1>
+    <p class="hero-subtitle reveal" style="color: rgba(255,255,255,0.9);">Mỗi hành trình là cơ hội để tạo tác động tích cực</p>
+  </div>
+</section>
+
+<!-- Impact Counters -->
+<section class="section" style="background: var(--green-pine); color: white;">
+  <div class="container grid-4 text-center reveal-group">
+    <div class="reveal">
+      <div style="font-family: var(--font-display); font-size: 3rem; font-weight: 700; color: var(--sun-gold); margin-bottom: 0.5rem;">2,450</div>
+      <div style="text-transform: uppercase; font-size: 0.875rem; letter-spacing: 1px;">Du khách tham gia</div>
+    </div>
+    <div class="reveal">
+      <div style="font-family: var(--font-display); font-size: 3rem; font-weight: 700; color: var(--sun-gold); margin-bottom: 0.5rem;">15,000</div>
+      <div style="text-transform: uppercase; font-size: 0.875rem; letter-spacing: 1px;">Cây đã trồng</div>
+    </div>
+    <div class="reveal">
+      <div style="font-family: var(--font-display); font-size: 3rem; font-weight: 700; color: var(--sun-gold); margin-bottom: 0.5rem;">2.3 Tấn</div>
+      <div style="text-transform: uppercase; font-size: 0.875rem; letter-spacing: 1px;">Rác đã dọn</div>
+    </div>
+    <div class="reveal">
+      <div style="font-family: var(--font-display); font-size: 3rem; font-weight: 700; color: var(--sun-gold); margin-bottom: 0.5rem;">850</div>
+      <div style="text-transform: uppercase; font-size: 0.875rem; letter-spacing: 1px;">Học sinh được hỗ trợ</div>
+    </div>
+  </div>
+</section>
+
+<!-- Activities List -->
+<section class="section">
+  <div class="container">
+    <div class="section-header text-center reveal">
+      <h2 class="section-title text-h2">Tham gia cùng chúng tôi</h2>
+      <p class="section-desc">Bạn có thể chọn các hoạt động này dưới dạng tour ngắn trong ngày hoặc kết hợp cùng chuyến đi dài ngày.</p>
+    </div>
+    
+    <div class="grid-3 reveal-group">
+      {% for act in activities %}
+      <div class="card reveal" style="padding: 1.5rem;">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+          <span class="tag">{{ act.type }}</span>
+          <span class="gp-badge">+{{ act.gp_reward }} GP</span>
+        </div>
+        <h3 class="text-h3" style="color: var(--green-pine); margin-bottom: 0.5rem;">{{ act.title }}</h3>
+        
+        <ul style="list-style: none; padding: 0; margin-bottom: 1.5rem; color: var(--green-moss); font-size: 0.875rem;">
+          <li style="margin-bottom: 0.5rem;"><i data-lucide="map-pin" style="width: 14px; height: 14px; vertical-align: middle;"></i> Điểm đến: {{ act.destinationId }}</li>
+          <li style="margin-bottom: 0.5rem;"><i data-lucide="clock" style="width: 14px; height: 14px; vertical-align: middle;"></i> Thời gian: {{ act.duration }}</li>
+          <li><i data-lucide="trending-up" style="width: 14px; height: 14px; vertical-align: middle;"></i> Tác động: {{ act.impact }}</li>
+        </ul>
+        
+        <button class="btn btn-ghost" style="width: 100%; border: 1px solid var(--border-light);">Tìm hiểu thêm</button>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

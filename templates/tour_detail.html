@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% block title %}{{ tour.title }} - Green Experience{% endblock %}
+
+{% block content %}
+<section class="section" style="padding-top: 100px;">
+  <div class="container grid-2" style="grid-template-columns: 2fr 1fr; gap: 3rem;">
+    <!-- Main Content -->
+    <div>
+      <div class="reveal">
+        <a href="/destinations/{{ dest.id }}" style="display: inline-block; margin-bottom: 1rem; color: var(--green-moss); font-size: 0.875rem;"><i data-lucide="arrow-left" style="width: 14px; height: 14px; vertical-align: middle;"></i> Trở lại {{ dest.name }}</a>
+        <h1 class="text-h1" style="margin-bottom: 1rem;">{{ tour.title }}</h1>
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
+          <span class="badge"><i data-lucide="clock" style="width:14px;height:14px;vertical-align:middle;"></i> {{ tour.duration }}</span>
+          <span class="gp-badge">+{{ tour.greenPoints }} GP</span>
+          <span class="co2-badge">-{{ tour.co2Saved }}kg CO₂</span>
+        </div>
+        <img src="{{ tour.image }}" alt="{{ tour.title }}" style="width: 100%; border-radius: var(--radius-card); margin-bottom: 2rem;">
+        <p class="text-body" style="font-size: 1.1rem; margin-bottom: 2rem;">{{ tour.description }}</p>
+      </div>
+
+      <!-- Lịch trình -->
+      <div class="reveal" style="margin-bottom: 3rem;">
+        <h2 class="text-h2" style="margin-bottom: 1.5rem; color: var(--green-pine);">Lịch trình chi tiết</h2>
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+          {% for day in tour.itinerary %}
+          <div style="background: white; border: 1px solid var(--border-light); border-radius: var(--radius-input); padding: 1.5rem;">
+            <h4 class="text-h4" style="color: var(--green-primary); margin-bottom: 0.5rem;">Ngày {{ day.day }}</h4>
+            <p>{{ day.content }}</p>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Included/Not Included -->
+      <div class="grid-2 reveal" style="margin-bottom: 3rem;">
+        <div style="background: var(--green-mint); padding: 1.5rem; border-radius: var(--radius-input);">
+          <h4 style="color: var(--green-pine); margin-bottom: 1rem;"><i data-lucide="check-circle" style="vertical-align: middle;"></i> Bao gồm</h4>
+          <ul style="list-style: none; padding: 0;">
+            {% for item in tour.included %}
+            <li style="margin-bottom: 0.5rem;">- {{ item }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div style="background: rgba(231,76,60,0.1); padding: 1.5rem; border-radius: var(--radius-input);">
+          <h4 style="color: #c0392b; margin-bottom: 1rem;"><i data-lucide="x-circle" style="vertical-align: middle;"></i> Không bao gồm</h4>
+          <ul style="list-style: none; padding: 0;">
+            {% for item in tour.notIncluded %}
+            <li style="margin-bottom: 0.5rem;">- {{ item }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+
+      <!-- Green Activities -->
+      <div class="reveal" style="background: var(--cream); padding: 2rem; border-radius: var(--radius-card);">
+        <h3 class="text-h3" style="color: var(--green-pine); margin-bottom: 1rem;">Hoạt động xanh trong hành trình</h3>
+        <ul style="list-style: none; padding: 0;">
+          {% for act in tour.greenActivities %}
+          <li style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; font-weight: 500;">
+            <i data-lucide="leaf" style="color: var(--green-primary);"></i> {{ act }}
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <!-- Sidebar Booking -->
+    <div>
+      <div class="card reveal" style="position: sticky; top: 100px; padding: 2rem;">
+        <h3 class="text-h2" style="color: var(--green-primary); margin-bottom: 0.5rem; text-align: center;">{{ "{:,.0f}".format(tour.price).replace(',', '.') }} ₫</h3>
+        <p class="text-center text-muted" style="margin-bottom: 1.5rem;">/ khách</p>
+        
+        <form action="/booking" method="GET">
+          <input type="hidden" name="tour_id" value="{{ tour.id }}">
+          
+          <div class="form-group">
+            <label class="form-label">Ngày khởi hành</label>
+            <input type="date" class="form-control" name="date" required>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Số khách</label>
+            <input type="number" class="form-control" name="guests" min="1" max="20" value="1" required>
+          </div>
+          
+          <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1.1rem; padding: 1rem;">Tiến hành đặt tour</button>
+        </form>
+        
+        <div style="margin-top: 1.5rem; text-align: center; font-size: 0.875rem; color: var(--green-moss);">
+          <i data-lucide="shield-check" style="width:16px;height:16px;vertical-align:middle;"></i> Thanh toán an toàn, bảo mật
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

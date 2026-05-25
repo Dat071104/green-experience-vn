@@ -1,0 +1,63 @@
+<nav class="main-nav">
+  <div class="container nav-container">
+    <a href="/" class="logo">
+      <i data-lucide="leaf"></i>
+      <div>
+        <span class="logo-title">Green Experience</span>
+        <span class="logo-tagline">Responsible Journey</span>
+      </div>
+    </a>
+    
+    <div class="nav-links">
+      <a href="/">Trang chủ</a>
+      <a href="/destinations">Điểm đến</a>
+      <a href="/homestays">Homestay xanh</a>
+      <a href="/community">Hoạt động cộng đồng</a>
+      <a href="/co2-calculator">Tính CO₂</a>
+      <a href="/about">Về chúng tôi</a>
+      
+      <!-- Mobile Auth (shows only on mobile when menu opens) -->
+      <div class="mobile-auth-links" style="display: none;">
+        <hr>
+        {% if session.user_id %}
+          <a href="/dashboard"><i data-lucide="award"></i> {{ session.user_name }}</a>
+          {% if session.is_admin %}
+            <a href="/admin/bookings">Admin Panel</a>
+          {% endif %}
+          <a href="/logout">Đăng xuất</a>
+        {% else %}
+          <a href="/login"><i data-lucide="user"></i> Đăng nhập</a>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="nav-auth">
+      {% if session.user_id %}
+        <a href="/dashboard" class="btn btn-primary btn-sm">
+          <i data-lucide="award"></i> {{ session.user_name }}
+        </a>
+        {% if session.is_admin %}
+          <a href="/admin/bookings" class="btn btn-ghost btn-sm">Admin</a>
+        {% endif %}
+      {% else %}
+        <a href="/login" class="btn btn-primary btn-sm">
+          <i data-lucide="user"></i> Đăng nhập
+        </a>
+      {% endif %}
+    </div>
+    
+    <button class="mobile-menu-toggle" aria-label="Toggle menu">
+      <i data-lucide="menu"></i>
+    </button>
+  </div>
+</nav>
+<style>
+@media (max-width: 768px) {
+  .mobile-auth-links {
+    display: flex !important;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+}
+</style>

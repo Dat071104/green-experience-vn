@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block title %}Điểm Đến Xanh - Green Experience{% endblock %}
+
+{% block content %}
+<section class="hero" style="min-height: 50vh; padding-top: 100px;">
+  <div class="container hero-content text-center">
+    <h1 class="hero-title text-hero reveal">Điểm đến xanh</h1>
+    <p class="hero-subtitle reveal" style="transition-delay: 0.1s; margin-bottom: 2rem;">Khám phá 3 vùng miền với trải nghiệm du lịch bền vững độc đáo</p>
+    
+    <div class="reveal" style="transition-delay: 0.2s;">
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="/destinations?region=all" class="btn {% if current_region == 'all' %}btn-primary{% else %}btn-secondary{% endif %}">Tất cả</a>
+        <a href="/destinations?region=Miền Bắc" class="btn {% if current_region == 'Miền Bắc' %}btn-primary{% else %}btn-secondary{% endif %}">Miền Bắc</a>
+        <a href="/destinations?region=Tây Nguyên" class="btn {% if current_region == 'Tây Nguyên' %}btn-primary{% else %}btn-secondary{% endif %}">Tây Nguyên</a>
+        <a href="/destinations?region=Miền Trung" class="btn {% if current_region == 'Miền Trung' %}btn-primary{% else %}btn-secondary{% endif %}">Miền Trung</a>
+        <a href="/destinations?region=Miền Tây" class="btn {% if current_region == 'Miền Tây' %}btn-primary{% else %}btn-secondary{% endif %}">Miền Tây</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    {% if destinations %}
+    <div class="grid-3 reveal-group">
+      {% for dest in destinations %}
+      <div class="card theme-{{ dest.id }} reveal">
+        <div class="card-img-wrap" style="padding-top: 66.66%;">
+          <img src="{{ dest.image }}" alt="{{ dest.name }}" loading="lazy">
+          <div style="position: absolute; top: 1rem; right: 1rem; z-index: 2;">
+            <span class="tag" style="background: white; color: var(--green-primary);">{{ dest.region }}</span>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3 class="text-h3" style="color: var(--dest-primary);">{{ dest.name }}</h3>
+          <p class="text-muted" style="margin-bottom: 1rem; flex-grow: 1;">{{ dest.description | truncate(100) }}</p>
+          <div style="font-size: 0.875rem; color: var(--green-moss); margin-bottom: 1rem; display: flex; flex-direction: column; gap: 0.5rem;">
+            <div style="display: flex; gap: 0.5rem;">
+              <span class="badge"><i data-lucide="clock" style="width:14px;height:14px;vertical-align:middle;"></i> 3-4 ngày</span>
+              <span style="font-weight: 600; color: var(--green-primary);">Từ 2.900.000 ₫</span>
+            </div>
+            <div style="display: flex; gap: 0.5rem;">
+              <span class="gp-badge">+150 GP</span>
+              <span class="co2-badge">-45kg CO₂</span>
+            </div>
+          </div>
+          <a href="/destinations/{{ dest.id }}" class="btn btn-primary" style="width: 100%;">Xem hành trình</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="text-center">
+      <p>Không tìm thấy điểm đến nào cho khu vực này.</p>
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

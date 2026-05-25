@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+{% block title %}Đặt tour - Green Experience{% endblock %}
+{% block extra_css %}
+<style>
+  .booking-steps {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+    position: relative;
+  }
+  .booking-steps::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--border-light);
+    z-index: 0;
+    transform: translateY(-50%);
+  }
+  .step {
+    background: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--border-light);
+    color: var(--green-moss);
+    font-weight: 700;
+    position: relative;
+    z-index: 1;
+  }
+  .step.active {
+    border-color: var(--green-primary);
+    background: var(--green-primary);
+    color: white;
+  }
+  .step-label {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    color: var(--green-pine);
+    font-weight: 600;
+  }
+  .step-content {
+    display: none;
+    animation: fadeInUp 0.4s ease;
+  }
+  .step-content.active {
+    display: block;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="section" style="padding-top: 120px; background: var(--off-white); min-height: 80vh;">
+  <div class="container" style="max-width: 800px;">
+    
+    <div class="booking-steps reveal">
+      <div class="step active" id="indicator-1">1<span class="step-label">Xác nhận</span></div>
+      <div class="step" id="indicator-2">2<span class="step-label">Thông tin</span></div>
+      <div class="step" id="indicator-3">3<span class="step-label">Hoàn tất</span></div>
+    </div>
+
+    <div class="card reveal" style="padding: 2.5rem; margin-bottom: 2rem;">
+      <form id="booking-form" action="/booking" method="POST">
+        <input type="hidden" name="tour_id" value="{{ tour.id }}">
+        <input type="hidden" name="tour_name" value="{{ tour.title }}">
+        <input type="hidden" name="date" value="{{ date }}">
+        <input type="hidden" name="guests" value="{{ guests }}">
+        <input type="hidden" name="total_price" value="{{ total_price }}">
+        <input type="hidden" name="green_points" value="{{ total_gp }}">
+
+        <!-- Step 1 -->
+        <div id="step-1" class="step-content active">
+          <h2 class="text-h2" style="color: var(--green-pine); margin-bottom: 1.5rem;">Xác nhận thông tin tour</h2>
+          
+          <div style="background: var(--cream); padding: 1.5rem; border-radius: var(--radius-input); margin-bottom: 2rem;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-light);">
+              <div style="font-weight: 600;">Tour</div>
+              <div style="color: var(--green-primary); font-weight: 700;">{{ tour.title }}</div>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-light);">
+              <div style="font-weight: 600;">Ngày khởi hành</div>
+              <div>{{ date }}</div>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-light);">
+              <div style="font-weight: 600;">Số lượng khách</div>
+              <div>{{ guests }} người</div>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-light);">
+              <div style="font-weight: 600;">Green Points dự kiến</div>
+              <div class="gp-badge">+{{ total_gp }} GP</div>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div style="font-weight: 600; font-size: 1.1rem;">Tổng tiền</div>
+              <div style="font-size: 1.5rem; font-weight: 700; color: var(--green-primary);">{{ "{:,.0f}".format(total_price).replace(',', '.') }} ₫</div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Chọn phương tiện di chuyển của bạn (để tính CO₂)</label>
+            <select class="form-control">
+              <option value="bus">Xe khách (Khuyên dùng)</option>
+              <option value="electric">Xe điện</option>
+              <option value="car">Ô tô cá nhân</option>
+              <option value="plane">Máy bay</option>
+            </select>
+          </div>
+
+          <div style="text-align: right;">
+            <button type="button" class="btn btn-primary" id="btn-next-1">Tiếp tục <i data-lucide="arrow-right"></i></button>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div id="step-2" class="step-content">
+          <h2 class="text-h2" style="color: var(--green-pine); margin-bottom: 1.5rem;">Thông tin liên hệ</h2>
+          
+          {% if not session.user_id %}
+          <div style="background: var(--green-mint); padding: 1rem; border-radius: var(--radius-input); margin-bottom: 2rem; color: var(--green-pine);">
+            <i data-lucide="info" style="vertical-align: middle; margin-right: 0.5rem;"></i> Bạn đang đặt tour dưới dạng khách. <a href="/login" style="font-weight: 600; text-decoration: underline;">Đăng nhập</a> để tích điểm GP.
+          </div>
+          {% endif %}
+
+          <div class="form-group">
+            <label class="form-label">Họ và tên</label>
+            <input type="text" class="form-control" name="name" required value="{{ user_info.get('name', '') }}">
+          </div>
+          <div class="grid-2">
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-control" name="email" required value="{{ user_info.get('email', '') }}">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Số điện thoại</label>
+              <input type="tel" class="form-control" name="phone" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Ghi chú (Dị ứng, yêu cầu đặc biệt...)</label>
+            <textarea class="form-control" name="notes"></textarea>
+          </div>
+
+          <div style="display: flex; justify-content: space-between;">
+            <button type="button" class="btn btn-secondary" id="btn-prev-2"><i data-lucide="arrow-left"></i> Quay lại</button>
+            <button type="submit" class="btn btn-primary">Xác nhận đặt tour <i data-lucide="check-circle"></i></button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/booking.js') }}"></script>
+{% endblock %}

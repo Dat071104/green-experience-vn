@@ -1,0 +1,167 @@
+{% extends 'base.html' %}
+{% block title %}Máy Tính CO₂ - Green Experience{% endblock %}
+{% block extra_css %}
+<style>
+  .co2-hero {
+    background: var(--gradient-mint);
+    padding: 8rem 0 4rem;
+    text-align: center;
+  }
+  .calc-card {
+    background: white;
+    border-radius: var(--radius-card);
+    padding: 2rem;
+    box-shadow: var(--shadow-card);
+    max-width: 600px;
+    margin: -2rem auto 4rem;
+    position: relative;
+    z-index: 10;
+  }
+  .result-section {
+    display: none;
+    text-align: center;
+    padding: 2rem;
+    background: var(--warm-white);
+    border-radius: var(--radius-card);
+    margin-top: 2rem;
+    animation: fadeInUp 0.5s ease;
+  }
+  .result-section.active {
+    display: block;
+  }
+  .result-big {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--green-primary);
+    margin: 1rem 0;
+  }
+  .comparison-bar {
+    display: flex;
+    height: 30px;
+    border-radius: 15px;
+    overflow: hidden;
+    margin: 2rem 0;
+    background: var(--cream);
+  }
+  .bar-normal {
+    background: #e74c3c;
+    transition: width 1s ease;
+    display: flex;
+    align-items: center;
+    padding-left: 1rem;
+    color: white;
+    font-size: 0.75rem;
+  }
+  .bar-green {
+    background: var(--green-primary);
+    transition: width 1s ease;
+    display: flex;
+    align-items: center;
+    padding-left: 1rem;
+    color: white;
+    font-size: 0.75rem;
+  }
+  .autocomplete-items {
+    position: absolute;
+    border: 1px solid var(--border-light);
+    border-bottom: none;
+    border-top: none;
+    z-index: 99;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border-radius: 0 0 var(--radius-input) var(--radius-input);
+    overflow: hidden;
+  }
+  .autocomplete-items div {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #fff;
+    border-bottom: 1px solid var(--border-light);
+  }
+  .autocomplete-items div:hover {
+    background-color: var(--green-mint);
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="co2-hero">
+  <div class="container">
+    <div class="section-label reveal">Máy Tính Tác Động</div>
+    <h1 class="text-h1 reveal" style="color: var(--green-pine); margin-bottom: 1rem;">Tính lượng CO₂ chuyến đi</h1>
+    <p class="reveal" style="max-width: 600px; margin: 0 auto; color: var(--green-moss);">Xem sự lựa chọn di chuyển của bạn có thể giảm bớt bao nhiêu tác động lên môi trường và quy đổi ra số lượng cây xanh.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top: 0;">
+  <div class="container">
+    <div class="calc-card reveal" style="transition-delay: 0.2s;">
+      <form id="co2-form">
+        <div class="grid-2">
+          <div class="form-group" style="position: relative;">
+            <label class="form-label">Điểm xuất phát</label>
+            <input type="text" id="origin" class="form-control" placeholder="VD: Hà Nội" required autocomplete="off">
+            <div id="origin-list" class="autocomplete-items"></div>
+          </div>
+          <div class="form-group" style="position: relative;">
+            <label class="form-label">Điểm đến</label>
+            <input type="text" id="destination" class="form-control" placeholder="VD: Hà Giang" required autocomplete="off">
+            <div id="destination-list" class="autocomplete-items"></div>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label">Số người tham gia</label>
+          <input type="number" id="guests" class="form-control" min="1" max="20" value="1" required>
+        </div>
+        
+        <div class="grid-2">
+          <div class="form-group">
+            <label class="form-label">Phương tiện thông thường</label>
+            <select id="transport-normal" class="form-control" required>
+              <option value="plane">Máy bay</option>
+              <option value="car">Ô tô cá nhân</option>
+              <option value="motorbike">Xe máy</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phương tiện xanh đề xuất</label>
+            <select id="transport-green" class="form-control" required>
+              <option value="bus">Xe khách / Xe chung</option>
+              <option value="electric">Xe điện</option>
+              <option value="bicycle">Xe đạp / Đi bộ</option>
+            </select>
+          </div>
+        </div>
+        
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem; font-size: 1.1rem; padding: 1rem;">Tính toán ngay <i data-lucide="leaf"></i></button>
+      </form>
+
+      <div id="result-section" class="result-section">
+        <h3 class="text-h3" style="color: var(--green-pine);">Bạn đã giảm khoảng</h3>
+        <div class="result-big"><span id="co2-saved">0</span> kg CO₂</div>
+        <div style="color: var(--green-moss); margin-bottom: 2rem;">
+          Tương đương <span id="trees-saved" style="font-weight: 700; color: var(--green-primary);">0</span> cây xanh không cần trồng để bù đắp
+        </div>
+        
+        <div class="comparison-bar">
+          <div id="bar-normal" class="bar-normal" style="width: 100%;">Thường: <span id="val-normal">0</span>kg</div>
+          <div id="bar-green" class="bar-green" style="width: 0%;">Xanh: <span id="val-green">0</span>kg</div>
+        </div>
+        
+        <div style="background: var(--green-mint); padding: 1rem; border-radius: var(--radius-input); margin-bottom: 1.5rem; color: var(--green-pine); font-weight: 500;">
+          <i data-lucide="star" style="color: var(--sun-gold); vertical-align: middle;"></i> Nhận thêm <span id="gp-bonus" style="font-weight: 700;">0</span> Green Points khi chọn hành trình xanh
+        </div>
+        
+        <a href="/destinations" class="btn btn-primary">Khám phá tour xanh <i data-lucide="arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/co2_calculator.js') }}"></script>
+{% endblock %}

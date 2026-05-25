@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block title %}Đặt tour thành công - Green Experience{% endblock %}
+{% block extra_css %}
+<style>
+  .success-card {
+    background: white;
+    max-width: 600px;
+    margin: 0 auto;
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-card);
+    padding: 3rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .success-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 8px;
+    background: var(--green-primary);
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="section" style="padding-top: 120px; background: var(--off-white); min-height: 80vh;">
+  <div class="container">
+    
+    <div class="success-card reveal">
+      <i data-lucide="check-circle" style="width: 80px; height: 80px; color: var(--green-primary); margin-bottom: 1.5rem;"></i>
+      <h1 class="text-h2" style="color: var(--green-pine); margin-bottom: 1rem;">Đặt tour thành công!</h1>
+      <p style="color: var(--green-moss); margin-bottom: 2rem;">Cảm ơn bạn đã lựa chọn trải nghiệm xanh. Mã đặt chỗ của bạn là:</p>
+      
+      <div style="background: var(--cream); border: 2px dashed var(--sand); padding: 1.5rem; border-radius: var(--radius-input); margin-bottom: 2rem;">
+        <div style="font-family: var(--font-display); font-size: 2rem; font-weight: 700; color: var(--green-primary); letter-spacing: 2px;">{{ booking.booking_code }}</div>
+      </div>
+      
+      <div style="text-align: left; margin-bottom: 2rem; padding: 1.5rem; background: var(--warm-white); border-radius: var(--radius-input);">
+        <h4 style="margin-bottom: 1rem; color: var(--green-pine);">Tóm tắt hành trình</h4>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+          <span style="color: var(--text-muted);">Tour:</span>
+          <span style="font-weight: 600;">{{ booking.tour_name }}</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+          <span style="color: var(--text-muted);">Ngày khởi hành:</span>
+          <span style="font-weight: 600;">{{ booking.booking_date }}</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+          <span style="color: var(--text-muted);">Số khách:</span>
+          <span style="font-weight: 600;">{{ booking.guests }}</span>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; padding-top: 0.5rem; border-top: 1px solid var(--border-light);">
+          <span style="color: var(--text-muted);">Tổng tiền:</span>
+          <span style="font-weight: 700; color: var(--green-primary);">{{ "{:,.0f}".format(booking.total_price).replace(',', '.') }} ₫</span>
+        </div>
+      </div>
+      
+      {% if session.user_id %}
+      <div style="background: var(--green-mint); padding: 1rem; border-radius: var(--radius-badge); display: inline-block; margin-bottom: 2rem;">
+        <i data-lucide="star" style="color: var(--sun-gold); vertical-align: middle;"></i> <span style="color: var(--green-pine); font-weight: 600;">+{{ booking.green_points }} Green Points</span> đã được cộng vào tài khoản!
+      </div>
+      {% endif %}
+      
+      <div style="display: flex; gap: 1rem; justify-content: center;">
+        <a href="/" class="btn btn-secondary">Về trang chủ</a>
+        {% if session.user_id %}
+        <a href="/dashboard" class="btn btn-primary">Xem Dashboard của tôi</a>
+        {% else %}
+        <a href="/register" class="btn btn-primary">Đăng ký để tích điểm</a>
+        {% endif %}
+      </div>
+    </div>
+    
+  </div>
+</section>
+{% endblock %}

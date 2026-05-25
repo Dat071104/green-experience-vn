@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block title %}Đăng nhập - Green Experience{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="auth-page">
+  <!-- Left Side: Hero Image -->
+  <div class="auth-left">
+    <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80" alt="Green Nature" class="auth-bg">
+    <div class="auth-overlay"></div>
+    <div class="auth-logo">
+      <i data-lucide="leaf" style="color: var(--green-mint); width: 32px; height: 32px;"></i>
+      <div style="font-family: var(--font-display); font-weight: 700; font-size: 1.25rem;">Green Experience</div>
+    </div>
+    <h1 class="auth-quote reveal">Bắt đầu hành trình<br>xanh của bạn</h1>
+    <p class="reveal" style="font-size: 1.1rem; opacity: 0.9; max-width: 400px; transition-delay: 0.1s;">Đăng nhập để xem lịch sử hành trình, số điểm Green Points và chứng nhận đóng góp của bạn cho môi trường.</p>
+  </div>
+
+  <!-- Right Side: Login Form -->
+  <div class="auth-right reveal" style="transition-delay: 0.2s;">
+    <div class="auth-card">
+      <h2 class="text-h2" style="color: var(--green-pine); margin-bottom: 0.5rem;">Chào mừng trở lại</h2>
+      <p class="text-muted" style="margin-bottom: 2rem;">Vui lòng đăng nhập vào tài khoản của bạn</p>
+
+      <form action="/login" method="POST">
+        <!-- Role Tabs -->
+        <div class="role-tabs">
+          <div class="role-tab active" data-role="user"><i data-lucide="user" style="width:16px;height:16px;vertical-align:middle;"></i> Du khách</div>
+          <div class="role-tab" data-role="staff"><i data-lucide="building" style="width:16px;height:16px;vertical-align:middle;"></i> Nhân viên</div>
+        </div>
+        <input type="hidden" name="role" id="role-input" value="user">
+
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input type="email" class="form-control" name="email" required placeholder="your@email.com">
+        </div>
+        
+        <div class="form-group">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <label class="form-label">Mật khẩu</label>
+            <a href="#" style="font-size: 0.875rem; color: var(--green-moss);">Quên mật khẩu?</a>
+          </div>
+          <div class="password-wrapper">
+            <input type="password" class="form-control" name="password" required placeholder="••••••••">
+            <button type="button" class="password-toggle"><i data-lucide="eye"></i></button>
+          </div>
+        </div>
+
+        <div class="form-group" id="staff-code-group" style="display: none;">
+          <label class="form-label">Mã xác thực nhân viên</label>
+          <input type="text" class="form-control" name="staffCode" id="staff-code" placeholder="VD: STAFF2025">
+        </div>
+        
+        <div class="form-group" style="display: flex; align-items: center; gap: 0.5rem;">
+          <input type="checkbox" id="remember" style="accent-color: var(--green-primary); width: 16px; height: 16px;">
+          <label for="remember" style="font-size: 0.875rem; color: var(--text-secondary); cursor: pointer;">Ghi nhớ đăng nhập</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1.1rem; padding: 1rem; margin-top: 1rem;">Đăng nhập <i data-lucide="arrow-right"></i></button>
+      </form>
+
+      <div class="auth-divider"><span>HOẶC</span></div>
+
+      <button class="btn btn-google">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google" style="width: 20px;"> 
+        Tiếp tục với Google
+      </button>
+
+      <div style="text-align: center; margin-top: 2rem; font-size: 0.875rem; color: var(--text-secondary);">
+        Chưa có tài khoản? <a href="/register" style="font-weight: 600;">Đăng ký ngay →</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/auth.js') }}"></script>
+{% endblock %}

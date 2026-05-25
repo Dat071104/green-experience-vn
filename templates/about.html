@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% block title %}Về Chúng Tôi - Green Experience{% endblock %}
+
+{% block content %}
+<section class="hero" style="min-height: 60vh; background: var(--gradient-hero); display: flex; align-items: center; justify-content: center; text-align: center;">
+  <div class="container hero-content">
+    <i data-lucide="leaf" style="width: 64px; height: 64px; color: var(--green-fresh); margin-bottom: 1rem;" class="reveal"></i>
+    <h1 class="hero-title text-hero reveal" style="color: white; transition-delay: 0.1s;">Hành trình xanh<br>Tác động bền vững</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container text-center">
+    <div class="section-header reveal">
+      <h2 class="section-title text-h2">Sứ mệnh của chúng tôi</h2>
+      <p class="section-desc">Kết nối du khách với thiên nhiên và văn hóa bản địa thông qua các hoạt động du lịch có trách nhiệm.</p>
+    </div>
+    
+    <div class="grid-3 reveal-group" style="margin-bottom: 4rem;">
+      <div class="why-item reveal">
+        <div class="why-icon"><i data-lucide="tree-pine"></i></div>
+        <h3 class="why-title text-h3">Môi trường</h3>
+        <p>Bảo vệ cảnh quan thiên nhiên, giảm rác thải nhựa và góp phần tái tạo rừng nguyên sinh.</p>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-icon"><i data-lucide="users"></i></div>
+        <h3 class="why-title text-h3">Cộng đồng</h3>
+        <p>Tạo sinh kế bền vững cho người dân địa phương thông qua dịch vụ lưu trú và thủ công mỹ nghệ.</p>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-icon"><i data-lucide="book-open"></i></div>
+        <h3 class="why-title text-h3">Văn hoá</h3>
+        <p>Tôn vinh và gìn giữ các giá trị truyền thống, phong tục tập quán của các dân tộc thiểu số.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background: var(--cream);">
+  <div class="container">
+    <div class="section-header text-center reveal">
+      <h2 class="section-title text-h2">Câu chuyện của chúng tôi</h2>
+    </div>
+    
+    <div style="max-width: 800px; margin: 0 auto;" class="reveal-group">
+      <div style="display: flex; gap: 2rem; margin-bottom: 2rem;" class="reveal">
+        <div style="font-weight: 700; font-family: var(--font-display); font-size: 1.5rem; color: var(--green-primary); min-width: 80px;">2022</div>
+        <div>
+          <h4 style="font-weight: 600; margin-bottom: 0.5rem;">Khởi động chiến dịch</h4>
+          <p>Green Experience bắt đầu với những chuyến đi tình nguyện nhỏ tại Măng Đen.</p>
+        </div>
+      </div>
+      <div style="display: flex; gap: 2rem; margin-bottom: 2rem;" class="reveal">
+        <div style="font-weight: 700; font-family: var(--font-display); font-size: 1.5rem; color: var(--green-primary); min-width: 80px;">2023</div>
+        <div>
+          <h4 style="font-weight: 600; margin-bottom: 0.5rem;">Hợp tác phát triển</h4>
+          <p>Mạng lưới mở rộng với 15 homestay chuẩn xanh tại khu vực miền núi phía Bắc.</p>
+        </div>
+      </div>
+      <div style="display: flex; gap: 2rem; margin-bottom: 2rem;" class="reveal">
+        <div style="font-weight: 700; font-family: var(--font-display); font-size: 1.5rem; color: var(--green-primary); min-width: 80px;">2024</div>
+        <div>
+          <h4 style="font-weight: 600; margin-bottom: 0.5rem;">Cột mốc đáng nhớ</h4>
+          <p>Đón 1,000 du khách xanh đầu tiên và khởi động hệ thống tính điểm Green Points.</p>
+        </div>
+      </div>
+      <div style="display: flex; gap: 2rem;" class="reveal">
+        <div style="font-weight: 700; font-family: var(--font-display); font-size: 1.5rem; color: var(--green-primary); min-width: 80px;">2025</div>
+        <div>
+          <h4 style="font-weight: 600; margin-bottom: 0.5rem;">Hành trình mới</h4>
+          <p>Mở rộng tới 3 vùng miền lớn và ra mắt tính năng Máy Tính CO₂ cho mọi hành trình.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section text-center">
+  <div class="container reveal">
+    <h2 class="text-h2" style="color: var(--green-pine); margin-bottom: 1.5rem;">Cùng chúng tôi tạo nên sự thay đổi</h2>
+    <a href="/destinations" class="btn btn-primary" style="padding: 1rem 3rem; font-size: 1.1rem;">Khám phá tour xanh ngay <i data-lucide="arrow-right"></i></a>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block title %}Quản lý Bookings - Admin{% endblock %}
+
+{% block content %}
+<section class="section" style="padding-top: 100px; background: var(--off-white); min-height: 90vh;">
+  <div class="container">
+    
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+      <h1 class="text-h2" style="color: var(--green-pine);">Quản lý Đặt Tour</h1>
+      <a href="/dashboard" class="btn btn-secondary">Về Dashboard</a>
+    </div>
+    
+    <div class="card reveal" style="padding: 2rem; overflow-x: auto;">
+      <table style="width: 100%; border-collapse: collapse; min-width: 800px;">
+        <thead>
+          <tr style="border-bottom: 2px solid var(--border-light); text-align: left;">
+            <th style="padding: 1rem; color: var(--green-pine);">Mã Booking</th>
+            <th style="padding: 1rem; color: var(--green-pine);">Khách Hàng</th>
+            <th style="padding: 1rem; color: var(--green-pine);">Tour</th>
+            <th style="padding: 1rem; color: var(--green-pine);">Ngày Đi</th>
+            <th style="padding: 1rem; color: var(--green-pine);">Trạng Thái</th>
+            <th style="padding: 1rem; color: var(--green-pine);">Hành Động</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for b in bookings %}
+          <tr style="border-bottom: 1px solid var(--border-light);">
+            <td style="padding: 1rem; font-weight: 600;">{{ b.booking_code }}</td>
+            <td style="padding: 1rem;">
+              <div>{{ b.customer_name }}</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted);">{{ b.customer_phone }}</div>
+            </td>
+            <td style="padding: 1rem;">
+              <div>{{ b.tour_name }}</div>
+              <div style="font-size: 0.8rem; color: var(--text-muted);">{{ b.guests }} khách</div>
+            </td>
+            <td style="padding: 1rem;">{{ b.booking_date }}</td>
+            <td style="padding: 1rem;">
+              <span class="badge" style="
+                {% if b.status == 'confirmed' %}background: var(--green-mint); color: var(--green-pine);
+                {% elif b.status == 'completed' %}background: var(--green-primary); color: white;
+                {% else %}background: #fee2e2; color: #ef4444;{% endif %}
+              ">{{ b.status }}</span>
+            </td>
+            <td style="padding: 1rem;">
+              <form action="/admin/bookings/update/{{ b.id }}" method="POST" style="display: flex; gap: 0.5rem; align-items: center;">
+                <select name="status" class="form-control" style="padding: 0.25rem 0.5rem; font-size: 0.875rem; width: auto; min-width: 120px;">
+                  <option value="confirmed" {% if b.status == 'confirmed' %}selected{% endif %}>Confirmed</option>
+                  <option value="completed" {% if b.status == 'completed' %}selected{% endif %}>Completed</option>
+                  <option value="cancelled" {% if b.status == 'cancelled' %}selected{% endif %}>Cancelled</option>
+                </select>
+                <button type="submit" class="btn btn-primary btn-sm" style="padding: 0.25rem 0.5rem;"><i data-lucide="save" style="width:16px;height:16px;"></i></button>
+              </form>
+            </td>
+          </tr>
+          {% else %}
+          <tr>
+            <td colspan="6" style="padding: 2rem; text-align: center; color: var(--text-muted);">Chưa có đơn đặt tour nào.</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    
+  </div>
+</section>
+{% endblock %}

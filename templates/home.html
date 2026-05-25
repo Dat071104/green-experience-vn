@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+
+{% block title %}Green Experience - Responsible Journey{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+{% endblock %}
+
+{% block content %}
+<!-- HERO SECTION -->
+<section class="hero">
+  <img src="https://images.unsplash.com/photo-1695094412603-3340f1e72232?w=1920" alt="Vietnamese landscape" class="hero-bg">
+  <div class="container hero-content">
+    <h1 class="hero-title text-hero reveal">Green Experience –<br>Responsible Journey</h1>
+    <p class="hero-subtitle reveal" style="transition-delay: 0.1s;">Đi xanh hơn, hiểu sâu hơn, để lại tác động tốt hơn</p>
+    
+    <div class="hero-ctas reveal" style="transition-delay: 0.2s;">
+      <a href="/destinations" class="btn btn-primary">
+        <i data-lucide="leaf"></i> Khám phá hành trình xanh
+      </a>
+      <a href="/co2-calculator" class="btn btn-secondary hero-btn-secondary">
+        Tính CO₂ chuyến đi <i data-lucide="arrow-right"></i>
+      </a>
+    </div>
+
+    <div class="hero-stats reveal" style="transition-delay: 0.3s;">
+      <div class="hero-stat-item">
+        <span class="hero-stat-num">1,200+</span>
+        <span class="hero-stat-label">Du khách xanh</span>
+      </div>
+      <div class="hero-stat-item">
+        <span class="hero-stat-num">3</span>
+        <span class="hero-stat-label">Vùng điểm đến</span>
+      </div>
+      <div class="hero-stat-item">
+        <span class="hero-stat-num">8,500</span>
+        <span class="hero-stat-label">Kg CO₂ tiết kiệm</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DESTINATIONS -->
+<section class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-label">Hành Trình Khám Phá</span>
+      <h2 class="section-title text-h2">Khám phá điểm đến xanh</h2>
+      <p class="section-desc">Những vùng đất tuyệt đẹp gắn liền với các dự án cộng đồng và nỗ lực bảo vệ thiên nhiên.</p>
+    </div>
+
+    <div class="grid-3 reveal-group">
+      {% for dest in destinations %}
+      <div class="card theme-{{ dest.id }} reveal">
+        <div class="card-img-wrap">
+          <img src="{{ dest.image }}" alt="{{ dest.name }}" loading="lazy">
+        </div>
+        <div class="card-body">
+          <span class="tag" style="align-self: flex-start; margin-bottom: 0.5rem;">{{ dest.region }}</span>
+          <h3 class="text-h3" style="color: var(--dest-primary);">{{ dest.name }}</h3>
+          <p class="text-muted" style="margin-bottom: 1rem; flex-grow: 1;">{{ dest.description | truncate(100) }}</p>
+          <a href="/destinations/{{ dest.id }}" class="btn btn-ghost" style="align-self: flex-start; padding: 0;">Xem điểm đến <i data-lucide="arrow-right"></i></a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    
+    <div class="text-center reveal" style="margin-top: 3rem; text-align: center;">
+      <a href="/destinations" class="btn btn-secondary">Xem tất cả điểm đến</a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY GREEN -->
+<section class="section" style="background-color: var(--cream);">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2 class="section-title text-h2">Tại sao chọn du lịch xanh?</h2>
+      <p class="section-desc">Chúng tôi tin rằng du lịch không chỉ là khám phá, mà còn là hành trình mang lại những giá trị tích cực.</p>
+    </div>
+
+    <div class="grid-3 reveal-group">
+      <div class="why-item reveal">
+        <div class="why-icon"><i data-lucide="heart-handshake"></i></div>
+        <h3 class="why-title text-h3">Hỗ trợ cộng đồng</h3>
+        <p>100% chi phí homestay và workshop đến tay người dân địa phương.</p>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-icon"><i data-lucide="tree-deciduous"></i></div>
+        <h3 class="why-title text-h3">Giảm tác động môi trường</h3>
+        <p>Chọn phương tiện xanh, không nhựa dùng một lần, trồng cây trong mỗi hành trình.</p>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-icon"><i data-lucide="award"></i></div>
+        <h3 class="why-title text-h3">Nhận Green Points</h3>
+        <p>Tích điểm từ mỗi hoạt động xanh, đổi quà và nhận certificate du lịch bền vững.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GP TEASER -->
+<section class="section gp-teaser">
+  <div class="container text-center reveal-group">
+    <div class="section-header reveal">
+      <i data-lucide="star" style="color: var(--sun-gold); width: 48px; height: 48px; margin-bottom: 1rem;"></i>
+      <h2 class="section-title text-h2">Hệ thống Green Points</h2>
+      <p class="section-desc">Mỗi hành động xanh đều được ghi nhận và thưởng điểm.</p>
+    </div>
+    
+    <div class="gp-grid reveal">
+      <div class="gp-item"><span class="gp-item-val">+100 GP</span> Đặt tour xanh</div>
+      <div class="gp-item"><span class="gp-item-val">+70 GP</span> Trồng cây</div>
+      <div class="gp-item"><span class="gp-item-val">+50 GP</span> Tham gia cộng đồng</div>
+      <div class="gp-item"><span class="gp-item-val">+40 GP</span> Chọn phương tiện xanh</div>
+      <div class="gp-item"><span class="gp-item-val">+30 GP</span> Check-in homestay xanh</div>
+      <div class="gp-item"><span class="gp-item-val">+20 GP</span> Không dùng nhựa 1 lần</div>
+    </div>
+    
+    <a href="/register" class="btn btn-accent reveal">Tạo tài khoản để tích điểm <i data-lucide="arrow-right"></i></a>
+  </div>
+</section>
+
+<!-- CO2 TEASER -->
+<section class="section co2-teaser">
+  <div class="container co2-split">
+    <div class="reveal">
+      <span class="section-label">Máy Tính CO₂</span>
+      <h2 class="section-title text-h2">Bạn đã tiết kiệm bao nhiêu CO₂?</h2>
+      <p style="margin-bottom: 2rem;">Nhập điểm xuất phát, phương tiện thường và phương tiện xanh — chúng tôi sẽ tính toán lượng khí thải bạn đã giảm thiểu cho môi trường.</p>
+      <a href="/co2-calculator" class="btn btn-primary">Thử ngay máy tính CO₂ <i data-lucide="calculator"></i></a>
+    </div>
+    <div class="reveal" style="transition-delay: 0.2s;">
+      <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&q=80" alt="Eco environment" class="co2-img" loading="lazy">
+    </div>
+  </div>
+</section>
+{% endblock %}

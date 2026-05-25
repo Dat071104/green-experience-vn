@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% block title %}{{ dest.name }} - Green Experience{% endblock %}
+
+{% block content %}
+<section class="hero" style="min-height: 70vh;">
+  <img src="{{ dest.image }}" alt="{{ dest.name }}" class="hero-bg" style="opacity: 0.6; filter: none;">
+  <div class="container hero-content text-center" style="margin-top: 10vh;">
+    <span class="tag reveal" style="margin-bottom: 1rem; background: rgba(255,255,255,0.9); color: var(--green-pine);">{{ dest.region }}</span>
+    <h1 class="hero-title text-hero reveal" style="text-shadow: 0 4px 12px rgba(0,0,0,0.5);">{{ dest.name }}</h1>
+    <p class="hero-subtitle reveal" style="text-shadow: 0 2px 8px rgba(0,0,0,0.5);">Trải nghiệm văn hóa và thiên nhiên bền vững</p>
+  </div>
+  <div style="position: absolute; bottom: 0; left: 0; width: 100%; height: 50%; background: linear-gradient(to top, var(--off-white), transparent); z-index: 0;"></div>
+</section>
+
+<!-- Câu chuyện điểm đến -->
+<section class="section" style="position: relative; z-index: 2;">
+  <div class="container grid-2" style="align-items: center;">
+    <div class="reveal">
+      <span class="section-label">Câu Chuyện Điểm Đến</span>
+      <h2 class="section-title text-h2">Về {{ dest.name.split(',')[0] }}</h2>
+      <p style="margin-bottom: 2rem;">{{ dest.description }}</p>
+      
+      <ul style="list-style: none; padding: 0;">
+        {% for highlight in dest.highlights %}
+        <li style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; color: var(--green-pine); font-weight: 500;">
+          <i data-lucide="check-circle" style="color: var(--green-fresh);"></i> {{ highlight }}
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="reveal">
+      <img src="{{ dest.image }}" alt="Về {{ dest.name }}" style="width: 100%; border-radius: var(--radius-card); box-shadow: var(--shadow-card);">
+    </div>
+  </div>
+</section>
+
+<!-- Các tour nổi bật -->
+{% if tours %}
+<section class="section" style="background: var(--cream);">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2 class="section-title text-h2">Các hành trình nổi bật</h2>
+    </div>
+    
+    <div class="grid-2 reveal-group">
+      {% for tour in tours %}
+      <div class="card reveal" style="flex-direction: row; align-items: stretch;">
+        <div class="card-img-wrap" style="width: 40%; padding-top: 0; height: auto;">
+          <img src="{{ tour.image }}" alt="{{ tour.title }}">
+        </div>
+        <div class="card-body" style="width: 60%; justify-content: center;">
+          <h3 class="text-h3">{{ tour.title }}</h3>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem;">
+            <span class="badge"><i data-lucide="clock" style="width:14px;height:14px;vertical-align:middle;"></i> {{ tour.duration }}</span>
+            <span class="gp-badge">+{{ tour.greenPoints }} GP</span>
+            <span class="co2-badge">-{{ tour.co2Saved }}kg CO₂</span>
+          </div>
+          <p class="text-h3" style="color: var(--green-primary); margin-bottom: 1rem;">{{ "{:,.0f}".format(tour.price).replace(',', '.') }} ₫</p>
+          <a href="/tours/{{ tour.id }}" class="btn btn-primary" style="align-self: flex-start;">Xem chi tiết</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- Homestay & Activities & Spots -->
+<section class="section">
+  <div class="container grid-3 reveal-group">
+    <!-- Homestays -->
+    <div>
+      <h3 class="text-h3" style="margin-bottom: 1.5rem; color: var(--green-pine);">Homestay Xanh</h3>
+      {% for h in homestays %}
+      <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; align-items: center;" class="reveal">
+        <img src="{{ h.image }}" alt="{{ h.name }}" style="width: 80px; height: 80px; object-fit: cover; border-radius: 12px;">
+        <div>
+          <h4 style="font-weight: 600; margin-bottom: 0.25rem;">{{ h.name }}</h4>
+          <div style="font-size: 0.875rem; color: var(--green-moss);">Green Score: {{ h.greenScore }}%</div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    
+    <!-- Spots -->
+    <div>
+      <h3 class="text-h3" style="margin-bottom: 1.5rem; color: var(--green-pine);">Không Nhựa 1 Lần</h3>
+      {% for s in spots %}
+      <div style="margin-bottom: 1.5rem;" class="reveal">
+        <span class="badge" style="margin-bottom: 0.5rem;">{{ s.type }}</span>
+        <h4 style="font-weight: 600; margin-bottom: 0.25rem;">{{ s.name }}</h4>
+        <p style="font-size: 0.875rem; color: var(--green-moss);">{{ s.description }}</p>
+      </div>
+      {% endfor %}
+    </div>
+    
+    <!-- Activities -->
+    <div>
+      <h3 class="text-h3" style="margin-bottom: 1.5rem; color: var(--green-pine);">Hoạt động Cộng đồng</h3>
+      {% for a in activities %}
+      <div style="margin-bottom: 1.5rem; background: var(--warm-white); padding: 1rem; border-radius: 12px; border: 1px solid var(--border-light);" class="reveal">
+        <h4 style="font-weight: 600; margin-bottom: 0.5rem;">{{ a.title }}</h4>
+        <div style="display: flex; justify-content: space-between; font-size: 0.875rem; color: var(--green-moss);">
+          <span>{{ a.duration }}</span>
+          <span class="gp-badge" style="font-size: 0.7rem;">+{{ a.gp_reward }} GP</span>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- Gallery (Mock 3 imgs) -->
+<section class="section" style="padding-top: 0;">
+  <div class="container">
+    <div class="grid-3">
+      <img src="{{ dest.image }}" alt="Gallery 1" style="width: 100%; height: 250px; object-fit: cover; border-radius: var(--radius-card);" class="reveal">
+      <img src="https://images.unsplash.com/photo-1695094412603-3340f1e72232?auto=format&fit=crop&q=80" alt="Gallery 2" style="width: 100%; height: 250px; object-fit: cover; border-radius: var(--radius-card);" class="reveal" style="transition-delay: 0.1s;">
+      <img src="https://images.unsplash.com/photo-1609412058473-c199497c3c5d?auto=format&fit=crop&q=80" alt="Gallery 3" style="width: 100%; height: 250px; object-fit: cover; border-radius: var(--radius-card);" class="reveal" style="transition-delay: 0.2s;">
+    </div>
+  </div>
+</section>
+{% endblock %}

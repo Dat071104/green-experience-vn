@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block title %}Homestay Đạt Chuẩn Xanh - Green Experience{% endblock %}
+
+{% block content %}
+<section class="hero" style="min-height: 50vh; padding-top: 100px; background: var(--green-pine);">
+  <div class="container hero-content text-center">
+    <h1 class="hero-title text-hero reveal" style="color: white;">Homestay đạt chuẩn xanh</h1>
+    <p class="hero-subtitle reveal" style="color: rgba(255,255,255,0.8); margin-bottom: 2rem;">Nghỉ lại nơi mỗi giấc ngủ đều có ý nghĩa cho môi trường và cộng đồng</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-header reveal">
+      <h2 class="section-title text-h2">5 Tiêu chí Xanh</h2>
+      <p class="section-desc">Chúng tôi hợp tác với các homestay cam kết tuân thủ các nguyên tắc bền vững.</p>
+    </div>
+    
+    <div class="grid-3 reveal-group" style="margin-bottom: 4rem;">
+      <div class="why-item reveal" style="background: white; border-radius: var(--radius-card); border: 1px solid var(--border-light);">
+        <div class="why-icon"><i data-lucide="droplets"></i></div>
+        <h4 class="text-h4">Tiết kiệm năng lượng & Nước</h4>
+      </div>
+      <div class="why-item reveal" style="background: white; border-radius: var(--radius-card); border: 1px solid var(--border-light);">
+        <div class="why-icon"><i data-lucide="ban"></i></div>
+        <h4 class="text-h4">Không nhựa dùng 1 lần</h4>
+      </div>
+      <div class="why-item reveal" style="background: white; border-radius: var(--radius-card); border: 1px solid var(--border-light);">
+        <div class="why-icon"><i data-lucide="utensils"></i></div>
+        <h4 class="text-h4">Nguyên liệu địa phương</h4>
+      </div>
+      <div class="why-item reveal" style="background: white; border-radius: var(--radius-card); border: 1px solid var(--border-light);">
+        <div class="why-icon"><i data-lucide="recycle"></i></div>
+        <h4 class="text-h4">Phân loại & Tái chế rác</h4>
+      </div>
+      <div class="why-item reveal" style="background: white; border-radius: var(--radius-card); border: 1px solid var(--border-light);">
+        <div class="why-icon"><i data-lucide="users"></i></div>
+        <h4 class="text-h4">Hỗ trợ cộng đồng bản địa</h4>
+      </div>
+    </div>
+
+    <div class="grid-3 reveal-group">
+      {% for hs in homestays %}
+      <div class="card reveal">
+        <div class="card-img-wrap">
+          <img src="{{ hs.image }}" alt="{{ hs.name }}" loading="lazy">
+        </div>
+        <div class="card-body">
+          <h3 class="text-h3" style="margin-bottom: 0.5rem; color: var(--green-pine);">{{ hs.name }}</h3>
+          
+          <div style="margin-bottom: 1rem;">
+            <div style="display: flex; justify-content: space-between; font-size: 0.875rem; margin-bottom: 0.25rem;">
+              <span>Green Score</span>
+              <span style="font-weight: 600; color: var(--green-primary);">{{ hs.greenScore }}%</span>
+            </div>
+            <div style="width: 100%; background: var(--sand); height: 6px; border-radius: 3px; overflow: hidden;">
+              <div style="width: {{ hs.greenScore }}%; background: var(--green-primary); height: 100%;"></div>
+            </div>
+          </div>
+          
+          <ul style="list-style: none; padding: 0; margin-bottom: 1.5rem; flex-grow: 1;">
+            {% for feature in hs.features %}
+            <li style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.875rem; color: var(--green-moss); margin-bottom: 0.5rem;">
+              <i data-lucide="check" style="width:14px;height:14px;color:var(--green-fresh);"></i> {{ feature }}
+            </li>
+            {% endfor %}
+          </ul>
+          
+          <a href="/destinations/{{ hs.destinationId }}" class="btn btn-secondary" style="width: 100%;">Xem Điểm Đến</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}
