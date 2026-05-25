@@ -1,6 +1,7 @@
 from app import create_app
 
-app = create_app('development')
+# ⭐ QUAN TRỌNG: app PHẢI được tạo ở module level, không trong if block
+app = create_app('production')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
