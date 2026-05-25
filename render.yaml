@@ -1,13 +1,14 @@
 services:
   - type: web
-    name: green-experience
+    name: green-experience-vn
     env: python
+    plan: free
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn run:app --bind 0.0.0.0:$PORT
+    startCommand: python -m gunicorn run:app --bind 0.0.0.0:$PORT --workers 1
     envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
       - key: SECRET_KEY
         generateValue: true
-    disk:
-      name: sqlite-data
-      mountPath: /opt/render/project/src/instance
-      sizeGB: 1
+      - key: FLASK_ENV
+        value: production
